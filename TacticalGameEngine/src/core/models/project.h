@@ -5,7 +5,7 @@
 #include "item.h"
 #include "unit.h"
 #include "map.h"
-
+#include "../interfaces/ILogger.h"
 namespace Engine::Core::Models {
 
 	class Project {
@@ -18,15 +18,19 @@ namespace Engine::Core::Models {
 
 		std::vector<std::string> allowed_unit_types_;
 		std::vector<std::string> allowed_item_types_;
+
+		std::shared_ptr<Interfaces::ILogger> logger_;
 	public:
-		Project(std::string name) : name_(name) {
+		Project(std::string name, std::shared_ptr<Interfaces::ILogger> logger) : name_(name), logger_(logger) {
 			active_map = std::make_unique<Map>("Deafult Map", 10, 10);
 
-			units_in_world_ = { "ENEMY","FRIEND" };
-			items_in_world_ = { "WEAPON","POTION" };
+			allowed_unit_types_ = { "ENEMY", "FRIEND" };
+			allowed_item_types_ = { "WEAPON", "POTION" };
 		}
 
-		std::string getName() const { return name_; }
+		std::string getName() const {
+			logger_->info("WE GOT NAME.");
+		return name_; }
 		void setName(std::string name) { name_ = name; }
 
 		Map& getMap() const { return *active_map; }//пришлось бы возвращать указатель
@@ -45,11 +49,11 @@ namespace Engine::Core::Models {
 		std::vector<std::string> getAvailableItemTypes() const { return allowed_item_types_; }
 
 		void spawnUnit(std::unique_ptr<Unit> new_unit) {
-			units_in_world_.push_back(new_unit);
+			units_in_world_.push_back(std::move(new_unit));
 		}
 		void removeUnit(std::string id) {
 			std::erase_if(units_in_world_, [&id](const auto& unit) { return unit->getId() == id; });//разобрать лямбду
 		}
 	};
 
-};
+}

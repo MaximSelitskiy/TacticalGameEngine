@@ -11,5 +11,7 @@ namespace Engine::Core::Utils {
         uuids::uuid_random_generator gen(engine);
         uuids::uuid id = gen();
         return uuids::to_string(id);
+        //std::string lol = "lplplp";
+        //return &lol;
     }
-};
+}

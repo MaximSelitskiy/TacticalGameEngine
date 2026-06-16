@@ -16,4 +16,4 @@ namespace Engine::Core::Models {
         std::string getType() const { return type_; }
         std::string getId() const { return id_; }
     };
-};
+}
