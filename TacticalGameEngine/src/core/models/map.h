@@ -16,7 +16,7 @@ namespace Engine::Core::Models {
 		int width_;
 		int height_;
 	public:
-		Map(std::string name, int width, int height) : name_(name), width_(width), height_(height), id_(Utils::generateId()) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
+		Map(std::string name, int width, int height) : name_(std::move(name)), width_(width), height_(height), id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
 		~Map() = default;
 		std::string getName() const { return name_; }
 		Vec2 getSize() const { return { width_,height_ }; }

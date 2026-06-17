@@ -10,7 +10,7 @@ namespace Engine::Core::Models {
         std::string type_;
         std::string id_;
     public:
-        Unit(std::string name, std::string type) : name_(name), type_(type), id_(Utils::generateId()) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
+        Unit(std::string name, std::string type) : name_(std::move(name)), type_(type), id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
         ~Unit() = default;
         std::string getName() const { return name_; }
         std::string getType() const { return type_; }
