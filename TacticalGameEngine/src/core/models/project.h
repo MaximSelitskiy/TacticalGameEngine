@@ -51,6 +51,9 @@ namespace Engine::Core::Models {
 		void spawnUnit(std::unique_ptr<Unit> new_unit) {
 			units_in_world_.push_back(std::move(new_unit));
 		}
+		const std::vector<std::unique_ptr<Unit>>& getUnitsInWorld() const {
+			return units_in_world_;
+		}//почитать про геттеры с unique_ptr
 		void removeUnit(std::string id) {
 			std::erase_if(units_in_world_, [&id](const auto& unit) { return unit->getId() == id; });//разобрать лямбду
 		}
