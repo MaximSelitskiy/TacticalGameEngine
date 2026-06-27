@@ -34,4 +34,7 @@ namespace Engine::Core::Runtime {
 		logger_->info("ENGINE WAS STOPPED");
 	}
 	bool GameEngine::isActive() { return is_running_; }
+	std::unique_ptr<Core::Models::Project> GameEngine::releaseProject() {
+		return std::move(active_project_);
+	}
 }

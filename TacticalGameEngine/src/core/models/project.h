@@ -1,11 +1,14 @@
 #pragma once
+
+#include "../interfaces/ILogger.h"
+
 #include <vector>
 #include <string>
 #include <memory>
 #include "item.h"
 #include "unit.h"
 #include "map.h"
-#include "../interfaces/ILogger.h"
+
 namespace Engine::Core::Models {
 
 	class Project {
@@ -28,7 +31,6 @@ namespace Engine::Core::Models {
 		}
 
 		std::string getName() const {
-			logger_->info("WE GOT NAME.");
 			return name_;
 		}
 		void setName(std::string name) { name_ = name; }
@@ -51,9 +53,15 @@ namespace Engine::Core::Models {
 		void spawnUnit(std::unique_ptr<Unit> new_unit) {
 			units_in_world_.push_back(std::move(new_unit));
 		}
+		void spawnItem(std::unique_ptr<Item> new_item) {
+			items_in_world_.push_back(std::move(new_item));
+		}
 		const std::vector<std::unique_ptr<Unit>>& getUnitsInWorld() const {
 			return units_in_world_;
 		}//почитать про геттеры с unique_ptr
+		const std::vector<std::unique_ptr<Item>>& getItemsInWorld() const {
+			return items_in_world_;
+		}
 		void removeUnit(std::string id) {
 			std::erase_if(units_in_world_, [&id](const auto& unit) { return unit->getId() == id; });//разобрать лямбду
 		}

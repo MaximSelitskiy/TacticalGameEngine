@@ -19,6 +19,6 @@ add_subdirectory(src/core)
 add_executable(TacticalGameEngine 
     "TacticalGameEngine.cpp" 
     "TacticalGameEngine.h"
- "src/adapters/editor/editor-state.h" "src/adapters/editor/menu-components.h" "src/adapters/editor/actions/resize-map-action.h" "src/adapters/editor/actions/create-unit-action.h" "src/adapters/editor/actions/manage_inventory_action.h" "src/adapters/editor/IEditorAction.h" "src/adapters/shared/state-manager.h" "src/adapters/shared/state-manager.cpp")
+ "src/adapters/editor/editor-state.h" "src/adapters/editor/menu-components.h" "src/adapters/editor/actions/resize-map-action.h" "src/adapters/editor/actions/create-unit-action.h" "src/adapters/editor/actions/manage_inventory_action.h" "src/adapters/editor/IEditorAction.h" "src/adapters/shared/state-manager.h" "src/adapters/shared/state-manager.cpp" "src/adapters/shared/editor-menu.h" "src/adapters/shared/editor-menu.cpp")
 
 target_link_libraries(TacticalGameEngine PRIVATE engine_core)

@@ -1,6 +1,8 @@
 #pragma once
-#include <iostream>
+
 #include "../../core/interfaces/ILogger.h"
+
+#include <iostream>
 
 namespace Engine::Infrastructure::Logging {
 

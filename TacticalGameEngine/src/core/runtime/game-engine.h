@@ -1,7 +1,10 @@
 #pragma once
+
 #include "../models/project.h"
+
 #include <vector>
 #include <memory>
+
 namespace Engine::Core::Runtime {
 	class GameEngine {
 	private:
@@ -18,5 +21,6 @@ namespace Engine::Core::Runtime {
 		 void end();
 		//
 		 bool isActive();
+		 std::unique_ptr<Core::Models::Project> releaseProject();
 	};
 }

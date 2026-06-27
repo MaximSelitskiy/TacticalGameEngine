@@ -2,10 +2,14 @@
 
 #include "../editor/editor-state.h"
 #include "../../core/runtime/game-engine.h"
+
+#include "editor-menu.h"
+
 namespace Engine::Adapters::Shared {
 	enum class AppState {
 		Editor,
-		Runtime
+		Runtime,
+		Exit
 	};
 
 	class StateManager {
@@ -16,8 +20,7 @@ namespace Engine::Adapters::Shared {
 		std::unique_ptr<Core::Runtime::GameEngine> game_engine_;
 		std::unique_ptr<Core::Models::Project> temporary_project_;
 	public:
-		StateManager(std::shared_ptr<Core::Interfaces::ILogger> logger, std::unique_ptr<Core::Models::Project> project) :
-			logger_(logger), temporary_project_(std::move(project));
+		StateManager(std::shared_ptr<Core::Interfaces::ILogger> logger, std::unique_ptr<Core::Models::Project> project);
 		~StateManager() = default;
 		void changeState(AppState new_state);
 		void update();

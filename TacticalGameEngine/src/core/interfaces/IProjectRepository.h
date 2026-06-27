@@ -1,5 +1,7 @@
 #pragma once
+
 #include "../models/project.h"
+
 namespace Engine::Core::Interfaces {
 	class IProjectRepository {
 	public:

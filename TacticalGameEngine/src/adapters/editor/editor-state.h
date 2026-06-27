@@ -1,6 +1,9 @@
 #pragma once
+
 #include "../../core/models/project.h"
+
 #include <memory>
+
 namespace Engine::Adapters::Editor {
 
 	class EditorState {

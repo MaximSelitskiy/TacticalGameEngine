@@ -1,5 +1,7 @@
 #pragma once
+
 #include "editor-state.h"
+
 namespace Engine::Adapters::Editor {
 
 	class IEditorAction {
@@ -7,6 +9,7 @@ namespace Engine::Adapters::Editor {
 		IEditorAction() = default;
 		virtual ~IEditorAction() = default;
 		virtual void execute(EditorState& state) = 0;
+		//virtual std::string getName() const = 0;
 	};
 
 }
