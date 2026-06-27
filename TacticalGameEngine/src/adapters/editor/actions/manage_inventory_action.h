@@ -34,15 +34,15 @@ namespace Engine::Adapters::Editor::Actions {
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::getline(std::cin, name_);
 			logger_->info("USER WROTE NAME");
-			auto unit = std::make_unique<Core::Models::Unit>(name_, types[item_type_ - 1]);
-			project.spawnUnit(std::move(unit));
+			auto item = std::make_unique<Core::Models::Item>(name_, types[item_type_ - 1]);
+			project.spawnItem(std::move(item));
 			std::cout << "[Editor] Item " + name_ + " succesfully spawned!" << std::endl;
 			std::cout << "ALL ITEMS IN WORLD:" << std::endl;
-			for (const auto& u : project.getUnitsInWorld()) {
+			for (const auto& u : project.getItemsInWorld()) {
 				std::cout << " - " << u->getName() << " (" << u->getType() << ")" << std::endl;
 			}
-	};
+		}
 	private:
 		std::shared_ptr <Core::Interfaces::ILogger> logger_;
-
+	};
 }
