@@ -12,7 +12,7 @@ namespace Engine::Adapters::Editor::Actions {
 	public:
 		CreateUnitAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : logger_(logger) {}
 		~CreateUnitAction() = default;
-		void execute(EditorState& editor_state) {
+		void execute(EditorState& editor_state) override {
 			int counter_ = 0;
 			int unit_type_;
 			std::string name_;
