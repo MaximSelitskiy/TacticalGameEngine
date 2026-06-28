@@ -40,9 +40,11 @@ namespace Engine::Adapters::Editor {
         switch (choice) {
         case 0:
             state_manager.changeState(Shared::AppState::Exit);
+            return;
             break;
         case 8:
             state_manager.changeState(Shared::AppState::Runtime);
+            return;
             break;
         default:
             break;
