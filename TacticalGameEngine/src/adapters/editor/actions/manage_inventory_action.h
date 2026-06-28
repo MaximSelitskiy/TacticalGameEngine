@@ -44,9 +44,7 @@ namespace Engine::Adapters::Editor::Actions {
 				std::cout << " - " << u->getName() << " (" << u->getType() << ")" << std::endl;
 			}
 		}
-		std::string getName() const override {
-			return "Manage Inventory (Create item)";
-		}
+		std::string getName() const override { return "Manage Inventory(Create Item)"; }
 	private:
 		std::shared_ptr <Core::Interfaces::ILogger> logger_;
 	};

@@ -9,6 +9,9 @@ namespace Engine::Adapters::Shared {
 		editor_state_(nullptr),
 		game_engine_(nullptr),
 		current_state_(AppState::Editor) {
+		editor_menu_ = std::make_unique<Editor::MenuComponents>(logger);
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::CreateUnitAction>(logger_));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::ManageInventoryAction>(logger_));
 		editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 	}
 	void StateManager::changeState(AppState new_state) {
@@ -44,8 +47,7 @@ namespace Engine::Adapters::Shared {
 		switch (current_state_) {
 		case AppState::Editor:
 			if (editor_state_) {
-				EditorMenu menu(logger_);
-				menu.update(*editor_state_, *this);
+				editor_menu_->update(*editor_state_, *this);
 			}
 			break;
 		case AppState::Runtime:

@@ -11,7 +11,7 @@ namespace Engine::Adapters::Editor {
 			logger_->errror("INVALID ACTION");
 			return;
 		}
-		actions_.push_back(action);
+		actions_.push_back(std::move(action));
 	}
 
     void MenuComponents::draw() const {
@@ -48,12 +48,12 @@ namespace Engine::Adapters::Editor {
             break;
         }
 
-        size_t action_index = static_cast<size_t>(choice);
+        size_t action_index = static_cast<size_t>(choice - 1);
         if (action_index < actions_.size()) {
             actions_[action_index]->execute(editor_state);
         }
         else {
-            logger_->warn("INVALID INPUT/INDEX")
+            logger_->warn("INVALID INPUT/INDEX");
         }
     }
 }
