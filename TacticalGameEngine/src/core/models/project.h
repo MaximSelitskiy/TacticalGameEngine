@@ -15,9 +15,13 @@ namespace Engine::Core::Models {
 	private:
 		std::string name_;
 		std::unique_ptr<Map> active_map_;
+		//WORLD
 		std::vector<std::unique_ptr<Unit>> units_in_world_;
 		std::vector<std::unique_ptr<Item>> items_in_world_;
-
+		//OBJECT POLL
+		std::vector<std::unique_ptr<Unit>> unit_pool_;
+		std::vector<std::unique_ptr<Item>> item_pool_;
+		//INFO FOR CREATION
 		std::vector<std::string> allowed_unit_types_;
 		std::vector<std::string> allowed_item_types_;
 
@@ -37,7 +41,7 @@ namespace Engine::Core::Models {
 
 		Map& getMap() const { return *active_map_; }//пришлось бы возвращать указатель
 		void setMap(std::unique_ptr<Map> new_map) {
-			active_map_ = std::move(new_map);//move потому что указатель уникальный, = не пройдет
+			active_map_ = std::move(new_map);
 		}
 
 		void addUnitType(std::string new_unit_type) {
@@ -64,6 +68,22 @@ namespace Engine::Core::Models {
 		}
 		void removeUnit(std::string id) {
 			std::erase_if(units_in_world_, [&id](const auto& unit) { return unit->getId() == id; });//разобрать лямбду
+		}
+
+		//OBJECT POOL
+		void addUnitToPool(std::unique_ptr<Unit> new_unit) {
+			unit_pool_.push_back(std::move(new_unit));
+		}
+		const std::vector<std::unique_ptr<Unit>>& getUnitPool() const { return unit_pool_; }
+
+		void addItemToPool(std::unique_ptr<Item> new_item) {
+			item_pool_.push_back(std::move(new_item));
+		}
+		const std::vector<std::unique_ptr<Item>>& getItemPool() const { return item_pool_; }
+		bool assignItemToUnit(const std::string& itemId, const std::string& unitId) {
+			//auto item = std::move(std::erase_if(item_pool_, [&itemId](const auto& item) { return item->getId() == itemId; }));
+			//auto unit = std::move(std::erase_if(unit_pool_, [&itemId](const auto& unit) { return unit->getId() == unitId; }));
+			return false;
 		}
 	};
 

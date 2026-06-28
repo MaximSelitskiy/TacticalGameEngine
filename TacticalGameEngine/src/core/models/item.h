@@ -12,7 +12,10 @@ namespace Engine::Core::Models {
         std::string type_;
         std::string id_;
     public:
-        Item(std::string name, std::string type) : name_(std::move(name)), type_(type), id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
+        Item(std::string name, std::string type) :
+            name_(std::move(name)),
+            type_(type),
+            id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
         ~Item() = default;
         std::string getName() const { return name_; }
         std::string getType() const { return type_; }

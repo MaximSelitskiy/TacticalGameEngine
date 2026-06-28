@@ -10,6 +10,7 @@ int main()
 	Engine::Adapters::Shared::StateManager state_manager(logger, std::move(project));
 	while (!state_manager.isExiting()) {
 		state_manager.update();
+		//system("cls");
 	}
 	return 0;
 

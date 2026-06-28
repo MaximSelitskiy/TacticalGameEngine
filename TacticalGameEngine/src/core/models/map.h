@@ -7,18 +7,18 @@
 namespace Engine::Core::Models {
 
 	struct Vec2 {
-		int x;
-		int y;
+		short x;
+		short y;
 	};
 
 	class Map {
 	private:
 		std::string name_;
 		std::string id_;
-		int width_;
-		int height_;
+		short width_;
+		short height_;
 	public:
-		Map(std::string name, int width, int height) : name_(std::move(name)), width_(width), height_(height), id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
+		Map(std::string name, short width, short height) : name_(std::move(name)), width_(width), height_(height), id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
 		~Map() = default;
 		std::string getName() const { return name_; }
 		Vec2 getSize() const { return { width_,height_ }; }

@@ -10,10 +10,10 @@
 
 namespace Engine::Adapters::Editor::Actions {
 
-	class CreateUnitAction : public IEditorAction {
+	class CreateUnitTypeAction : public IEditorAction {
 	public:
-		CreateUnitAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : IEditorAction(logger) {}
-		~CreateUnitAction() = default;
+		CreateUnitTypeAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : IEditorAction(logger) {}
+		~CreateUnitTypeAction() = default;
 		void execute(EditorState& editor_state) override {
 			int counter_ = 0;
 			int unit_type_;
@@ -37,7 +37,7 @@ namespace Engine::Adapters::Editor::Actions {
 			std::getline(std::cin, name_);
 			logger_->info("USER WROTE NAME");
 			auto unit = std::make_unique<Core::Models::Unit>(name_, types[unit_type_ - 1]);
-			project.spawnUnit(std::move(unit));
+			project.addUnitToPool(std::move(unit));
 			std::cout << "[Editor] Unit " + name_ + " succesfully spawned!" << std::endl;
 			std::cout << "ALL UNITS IN WORLD:" << std::endl;
 			for (const auto& u : project.getUnitsInWorld()) {

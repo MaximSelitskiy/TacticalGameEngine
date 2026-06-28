@@ -10,8 +10,8 @@ namespace Engine::Adapters::Shared {
 		game_engine_(nullptr),
 		current_state_(AppState::Editor) {
 		editor_menu_ = std::make_unique<Editor::MenuComponents>(logger);
-		editor_menu_->registerAction(std::make_unique<Editor::Actions::CreateUnitAction>(logger_));
-		editor_menu_->registerAction(std::make_unique<Editor::Actions::ManageInventoryAction>(logger_));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::CreateUnitTypeAction>(logger_));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::CreateItemTypeAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::ResizeMapAction>(logger_));
 		editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 	}

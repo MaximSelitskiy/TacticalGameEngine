@@ -10,10 +10,10 @@
 
 namespace Engine::Adapters::Editor::Actions {
 
-	class ManageInventoryAction : public IEditorAction {
+	class CreateItemTypeAction : public IEditorAction {
 	public:
-		ManageInventoryAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : IEditorAction(logger) {}
-		~ManageInventoryAction() = default;
+		CreateItemTypeAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : IEditorAction(logger) {}
+		~CreateItemTypeAction() = default;
 		void execute(EditorState& editor_state) override {
 			int counter_ = 0;
 			int item_type_;
@@ -37,7 +37,7 @@ namespace Engine::Adapters::Editor::Actions {
 			std::getline(std::cin, name_);
 			logger_->info("USER WROTE NAME");
 			auto item = std::make_unique<Core::Models::Item>(name_, types[item_type_ - 1]);
-			project.spawnItem(std::move(item));
+			project.addItemToPool(std::move(item));
 			std::cout << "[Editor] Item " + name_ + " succesfully spawned!" << std::endl;
 			std::cout << "ALL ITEMS IN WORLD:" << std::endl;
 			for (const auto& u : project.getItemsInWorld()) {
