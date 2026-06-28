@@ -2,6 +2,7 @@
 
 #include "../editor/actions/create-unit-action.h"
 #include "../editor/actions/manage_inventory_action.h"
+#include "../editor/actions/resize-map-action.h"
 #include "../editor/editor-state.h"
 #include "../editor/menu-components.h"
 #include "../../core/runtime/game-engine.h"

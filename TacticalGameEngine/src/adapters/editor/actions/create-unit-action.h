@@ -12,7 +12,7 @@ namespace Engine::Adapters::Editor::Actions {
 
 	class CreateUnitAction : public IEditorAction {
 	public:
-		CreateUnitAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : logger_(logger) {}
+		CreateUnitAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : IEditorAction(logger) {}
 		~CreateUnitAction() = default;
 		void execute(EditorState& editor_state) override {
 			int counter_ = 0;
@@ -45,8 +45,6 @@ namespace Engine::Adapters::Editor::Actions {
 			}
 		}
 		std::string getName() const override { return "Create Unit"; }
-	private:
-		std::shared_ptr <Core::Interfaces::ILogger> logger_;
 	};
 
 }

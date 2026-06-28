@@ -12,7 +12,7 @@ namespace Engine::Adapters::Editor::Actions {
 
 	class ManageInventoryAction : public IEditorAction {
 	public:
-		ManageInventoryAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : logger_(logger) {}
+		ManageInventoryAction(std::shared_ptr<Core::Interfaces::ILogger> logger) : IEditorAction(logger) {}
 		~ManageInventoryAction() = default;
 		void execute(EditorState& editor_state) override {
 			int counter_ = 0;
@@ -45,7 +45,5 @@ namespace Engine::Adapters::Editor::Actions {
 			}
 		}
 		std::string getName() const override { return "Manage Inventory(Create Item)"; }
-	private:
-		std::shared_ptr <Core::Interfaces::ILogger> logger_;
 	};
 }
