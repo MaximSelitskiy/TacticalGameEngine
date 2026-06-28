@@ -1,4 +1,5 @@
 #include "state-manager.h"
+#include "../runtime_ui/game-state-presenter.h"
 
 #include <memory>
 
@@ -32,11 +33,13 @@ namespace Engine::Adapters::Shared {
 			editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 			logger_->info("EDITOR IS RUNNING");
 			break;
-		case AppState::Runtime:
-			game_engine_ = std::make_unique<Core::Runtime::GameEngine>(std::move(temporary_project_),logger_);
+		case AppState::Runtime: {
+			auto presenter = std::make_shared<RuntimeUI::GameStatePresenter>();
+			game_engine_ = std::make_unique<Core::Runtime::GameEngine>(std::move(temporary_project_), logger_, presenter);
 			game_engine_->start();
 			logger_->info("ENGINE IS RUNNNING");
 			break;
+		}
 		case AppState::Exit:
 			if (temporary_project_) {
 				logger_->info("PROJECT '" + temporary_project_->getName() + "' SAFELY DEALLOCATED");

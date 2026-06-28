@@ -2,21 +2,27 @@
 
 #include <vector>
 #include <memory>
-
+#include <iostream>
 namespace Engine::Core::Runtime {
 	GameEngine::GameEngine(std::unique_ptr<Models::Project> project,
-		std::shared_ptr<Interfaces::ILogger> logger)
-		: active_project_(std::move(project)), logger_(logger), is_running_(false) {
-		//
-	}
+		std::shared_ptr<Interfaces::ILogger> logger,
+		std::shared_ptr<Interfaces::IGamePresenter> presenter)
+		: active_project_(std::move(project)), logger_(logger), is_running_(false),presenter_(presenter) {}
 
 	void GameEngine::start() {
 		if (is_running_) {
 			logger_->warn("ENGINE ALREADY RUNNING");
+			presenter_->present(*active_project_);
+			std::string input;
+			std::getline(std::cin, input);
+			if (input == "0") {
+				is_running_ = false;
+			}
 			return;
 		}
 		is_running_ = true;
 		logger_->info("ENGINE STARTED");
+		presenter_->present(*active_project_);
 	}
 
 	void GameEngine::update() {
