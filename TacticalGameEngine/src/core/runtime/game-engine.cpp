@@ -13,16 +13,9 @@ namespace Engine::Core::Runtime {
 		if (is_running_) {
 			logger_->warn("ENGINE ALREADY RUNNING");
 			presenter_->present(*active_project_);
-			std::string input;
-			std::getline(std::cin, input);
-			if (input == "0") {
-				is_running_ = false;
-			}
-			return;
 		}
 		is_running_ = true;
 		logger_->info("ENGINE STARTED");
-		presenter_->present(*active_project_);
 	}
 
 	void GameEngine::update() {
@@ -30,8 +23,13 @@ namespace Engine::Core::Runtime {
 			logger_->warn("ENGINE NOT RUNNING");
 			return;
 		}
-
-		//будет апдейт тиков
+		presenter_->present(*active_project_);
+		std::string input;
+		std::getline(std::cin, input);
+		if (input == "0") {
+			is_running_ = false;
+		}
+		return;
 	}
 
 	void GameEngine::end() {

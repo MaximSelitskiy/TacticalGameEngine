@@ -32,12 +32,14 @@ namespace Engine::Adapters::Shared {
 		case AppState::Editor:
 			editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 			logger_->info("EDITOR IS RUNNING");
+			current_state_ = AppState::Editor;
 			break;
 		case AppState::Runtime: {
 			auto presenter = std::make_shared<RuntimeUI::GameStatePresenter>();
 			game_engine_ = std::make_unique<Core::Runtime::GameEngine>(std::move(temporary_project_), logger_, presenter);
 			game_engine_->start();
 			logger_->info("ENGINE IS RUNNNING");
+			current_state_ = AppState::Runtime;
 			break;
 		}
 		case AppState::Exit:
