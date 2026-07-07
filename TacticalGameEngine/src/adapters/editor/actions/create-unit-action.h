@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <numeric>
-#include <iostream>
 
 namespace Engine::Adapters::Editor::Actions {
 
@@ -20,28 +19,28 @@ namespace Engine::Adapters::Editor::Actions {
 			std::string name_;
 			auto& project = editor_state.getEditorProject();
 			std::vector<std::string> types = project.Core::Models::Project::getAvailableUnitTypes();
-			std::cout << "AVAILABLE UNIT TYPES:" << std::endl;
+			logger_->info("AVAILABLE UNIT TYPES:");
 			while (counter_ != types.size()) {
-				std::cout << types[counter_] << ", " << std::endl;
+				logger_->info(types[counter_] + ", ");
 				counter_++;
 			}
-			std::cout << "WRITE NUMBER OF AVAILABLE TYPE FOR UNIT CREATION (1,2,...): " << std::endl;
+			logger_->info("WRITE NUMBER OF AVAILABLE TYPE FOR UNIT CREATION (1,2,...): ");
 			std::cin >> unit_type_;
 			while (!(unit_type_ > 0 && unit_type_ <= types.size())) {
 				logger_->errror("USER CHOSE WRONG TYPE");
 				std::cin >> unit_type_;
 			}
 			logger_->info("USER CHOSE TYPE");
-			std::cout << "WRITE NAME FOR UNIT CREATION: " << std::endl;
+			logger_->info("WRITE NAME FOR UNIT CREATION: ");
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::getline(std::cin, name_);
 			logger_->info("USER WROTE NAME");
 			auto unit = std::make_unique<Core::Models::Unit>(name_, types[unit_type_ - 1]);
 			project.addUnitToPool(std::move(unit));
-			std::cout << "[Editor] Unit " + name_ + " succesfully spawned!" << std::endl;
-			std::cout << "ALL UNITS IN WORLD:" << std::endl;
+			logger_->info("UNIT " + name_ + " SUCCEFULLY SPAWNED!");
+			logger_->info("ALL UNITS IN WORLD:");
 			for (const auto& u : project.getUnitsInWorld()) {
-				std::cout << " - " << u->getName() << " (" << u->getType() << ")" << std::endl;
+				logger_->info(" - " + u->getName() + " (" + u->getType() + ")");
 			}
 		}
 		std::string getName() const override { return "Create Unit"; }

@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <numeric>
-#include <iostream>
 
 namespace Engine::Adapters::Editor::Actions {
 
@@ -20,28 +19,28 @@ namespace Engine::Adapters::Editor::Actions {
 			std::string name_;
 			auto& project = editor_state.getEditorProject();
 			std::vector<std::string> types = project.Core::Models::Project::getAvailableItemTypes();
-			std::cout << "AVAILABLE ITEM TYPES:" << std::endl;
+			logger_->info("AVAILABLE ITEM TYPES:");
 			while (counter_ != types.size()) {
-				std::cout << types[counter_] << ", " << std::endl;
+				logger_->info(types[counter_] + ", ");
 				counter_++;
 			}
-			std::cout << "WRITE NUMBER OF AVAILABLE TYPE FOR ITEM CREATION (1,2,...): " << std::endl;
+			logger_->info("WRITE NUMBER OF AVAILABLE TYPE FOR ITEM CREATION (1,2,...): ");
 			std::cin >> item_type_;
 			while (!(item_type_ > 0 && item_type_ <= types.size())) {
 				logger_->errror("USER CHOSE WRONG TYPE");
 				std::cin >> item_type_;
 			}
 			logger_->info("USER CHOSE TYPE");
-			std::cout << "WRITE NAME FOR ITEM CREATION: " << std::endl;
+			logger_->info("WRITE NAME FOR ITEM CREATION: ");
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::getline(std::cin, name_);
 			logger_->info("USER WROTE NAME");
 			auto item = std::make_unique<Core::Models::Item>(name_, types[item_type_ - 1]);
 			project.addItemToPool(std::move(item));
-			std::cout << "[Editor] Item " + name_ + " succesfully spawned!" << std::endl;
-			std::cout << "ALL ITEMS IN WORLD:" << std::endl;
+			logger_->info("ITEM " + name_ + " SUCCESFULLY SPAWNED!");
+			logger_->info("ALL ITEMS IN WORLD:");
 			for (const auto& u : project.getItemsInWorld()) {
-				std::cout << " - " << u->getName() << " (" << u->getType() << ")" << std::endl;
+				logger_->info(" - " + u->getName() + " (" + u->getType() + ")");
 			}
 		}
 		std::string getName() const override { return "Manage Inventory(Create Item)"; }
