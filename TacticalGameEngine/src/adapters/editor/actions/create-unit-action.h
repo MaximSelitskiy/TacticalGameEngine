@@ -37,7 +37,7 @@ namespace Engine::Adapters::Editor::Actions {
 			logger_->info("USER WROTE NAME");
 			auto unit = std::make_unique<Core::Models::Unit>(name_, types[unit_type_ - 1]);
 			project.addUnitToPool(std::move(unit));
-			logger_->info("UNIT " + name_ + " SUCCEFULLY SPAWNED!");
+			logger_->info("UNIT " + name_ + " SUCCEFULLY CREATED!");
 			logger_->info("ALL UNITS IN WORLD:");
 			for (const auto& u : project.getUnitsInWorld()) {
 				logger_->info(" - " + u->getName() + " (" + u->getType() + ")");

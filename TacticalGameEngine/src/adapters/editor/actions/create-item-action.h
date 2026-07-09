@@ -37,7 +37,7 @@ namespace Engine::Adapters::Editor::Actions {
 			logger_->info("USER WROTE NAME");
 			auto item = std::make_unique<Core::Models::Item>(name_, types[item_type_ - 1]);
 			project.addItemToPool(std::move(item));
-			logger_->info("ITEM " + name_ + " SUCCESFULLY SPAWNED!");
+			logger_->info("ITEM " + name_ + " SUCCESFULLY CREATED!");
 			logger_->info("ALL ITEMS IN WORLD:");
 			for (const auto& u : project.getItemsInWorld()) {
 				logger_->info(" - " + u->getName() + " (" + u->getType() + ")");

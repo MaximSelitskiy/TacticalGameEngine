@@ -18,6 +18,8 @@ namespace Engine::Adapters::Editor::Actions {
 			int unit_number_;
 			auto& project = editor_state.getEditorProject();
 			const auto& unit_pool = project.getUnitPool();
+			const auto& map = project.getMap();
+			const auto& size = map.getSize();
 			if (unit_pool.empty()) {
 				logger_->warn("UNIT POOL IS EMPTY");
 				return;
@@ -27,8 +29,8 @@ namespace Engine::Adapters::Editor::Actions {
 				std::string status;
 				if (unit_pool[counter_]->isPlaced()) {
 					auto pos = unit_pool[counter_]->getPosition();
-					std::string statusX = "PLACED ON X: " + pos->x;
-					std::string statusY = " Y: " + pos->y;
+					std::string statusX = "PLACED ON X: " + std::to_string(pos->x);
+					std::string statusY = " Y: " + std::to_string(pos->y);
 					status += statusX + statusY;
 				}
 				else {
@@ -45,8 +47,22 @@ namespace Engine::Adapters::Editor::Actions {
 				std::cin >> unit_number_;
 			}
 			logger_->info("USER CHOSE UNIT");
-			logger_->info("WRITE NAME FOR ITEM CREATION: ");
-			
+			logger_->info("WRITE POSITION X FOR UNIT PLACING: ");
+			short x_pos;
+			std::cin >> x_pos;
+			while (!(x_pos > 0 && x_pos <= size.x)) {
+				logger_->errror("USER CHOSE WRONG X POSITION");
+				std::cin >> x_pos;
+			}
+			logger_->info("WRITE POSITION Y FOR UNIT PLACING: ");
+			short y_pos;
+			std::cin >> y_pos;
+			while (!(y_pos > 0 && y_pos <= size.y)) {
+				logger_->errror("USER CHOSE WRONG Y POSITION");
+				std::cin >> y_pos;
+			}
+			unit_pool[unit_number_ - 1]->setPosition(x_pos, y_pos);
+			logger_->info("UNIT SUCCESFULLY PLACED!");
 		}
 		std::string getName() const override { return "Place Unit"; }
 	};

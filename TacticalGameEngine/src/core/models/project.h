@@ -80,6 +80,9 @@ namespace Engine::Core::Models {
 			item_pool_.push_back(std::move(new_item));
 		}
 		const std::vector<std::unique_ptr<Item>>& getItemPool() const { return item_pool_; }
+
+		std::vector<std::unique_ptr<Item>>& getItemPool() { return item_pool_; }
+
 		bool assignItemToUnit(const std::string& itemId, const std::string& unitId) {
 			//auto item = std::move(std::erase_if(item_pool_, [&itemId](const auto& item) { return item->getId() == itemId; }));
 			//auto unit = std::move(std::erase_if(unit_pool_, [&itemId](const auto& unit) { return unit->getId() == unitId; }));

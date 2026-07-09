@@ -4,6 +4,7 @@
 #include "../editor/actions/create-item-action.h"
 #include "../editor/actions/resize-map-action.h"
 #include "../editor/actions/place-unit-action.h"
+#include "../editor/actions/place-item-action.h"
 #include "../editor/editor-state.h"
 #include "../editor/menu-components.h"
 #include "../../core/runtime/game-engine.h"
