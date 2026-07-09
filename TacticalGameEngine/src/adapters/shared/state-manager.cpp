@@ -14,6 +14,8 @@ namespace Engine::Adapters::Shared {
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::CreateUnitTypeAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::CreateItemTypeAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::ResizeMapAction>(logger_));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::PlaceUnitAction>(logger_));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::PlaceItemAction>(logger_));
 		editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 	}
 	void StateManager::changeState(AppState new_state) {
