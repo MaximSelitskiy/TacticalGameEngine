@@ -4,7 +4,9 @@
 #include <memory>
 
 namespace Engine::Adapters::Shared {
-	StateManager::StateManager(std::shared_ptr<Core::Interfaces::ILogger> logger, std::unique_ptr<Core::Models::Project> project) :
+	StateManager::StateManager(std::shared_ptr<Core::Interfaces::ILogger> logger,
+		std::unique_ptr<Core::Models::Project> project,
+		std::shared_ptr<Core::Interfaces::IProjectRepository> repo) :
 		logger_(logger),
 		temporary_project_(std::move(project)),
 		editor_state_(nullptr),
@@ -16,6 +18,7 @@ namespace Engine::Adapters::Shared {
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::ResizeMapAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::PlaceUnitAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::PlaceItemAction>(logger_));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::SaveProjectAction>(logger_, repo));
 		editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 	}
 	void StateManager::changeState(AppState new_state) {
