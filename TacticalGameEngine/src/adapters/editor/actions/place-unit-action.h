@@ -17,7 +17,7 @@ namespace Engine::Adapters::Editor::Actions {
 			int counter_ = 0;
 			int unit_number_;
 			auto& project = editor_state.getEditorProject();
-			const auto& unit_pool = project.getUnitPool();
+			auto& unit_pool = project.getUnitPool();
 			const auto& map = project.getMap();
 			const auto& size = map.getSize();
 			if (unit_pool.empty()) {
@@ -62,6 +62,8 @@ namespace Engine::Adapters::Editor::Actions {
 				std::cin >> y_pos;
 			}
 			unit_pool[unit_number_ - 1]->setPosition(x_pos, y_pos);
+			auto& unit = unit_pool[unit_number_ - 1];
+			project.spawnUnit(std::move(unit));
 			logger_->info("UNIT SUCCESFULLY PLACED!");
 		}
 		std::string getName() const override { return "Place Unit"; }

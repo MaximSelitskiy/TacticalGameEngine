@@ -35,7 +35,7 @@ namespace Engine::Adapters::RuntimeUI {
 
     void GameStatePresenter::drawHUD(const Core::Models::Project& project) const {
         std::cout << "\n=================== HUD ===================" << std::endl;
-        std::cout << "UUNITS IN WORLD:" << std::endl;
+        std::cout << "UNITS IN WORLD:" << std::endl;
 
         bool any_placed = false;
         for (const auto& unit : project.getUnitPool()) {

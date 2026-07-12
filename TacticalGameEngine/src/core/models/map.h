@@ -23,5 +23,6 @@ namespace Engine::Core::Models {
 		std::string getName() const { return name_; }
 		Vec2 getSize() const { return { width_,height_ }; }
 		std::string getId() const { return id_; }
+		void setId(std::string id) { id_ = std::move(id); }
 	};
 }

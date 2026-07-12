@@ -27,6 +27,7 @@ namespace Engine::Core::Models {
         std::string getName() const { return name_; }
         std::string getType() const { return type_; }
         std::string getId() const { return id_; }
+        void setId(std::string id) { id_ = std::move(id); }
         //POSITION
         std::optional<Vec2> getPosition() const { return position_; }
         void setPosition(short x,short y) {

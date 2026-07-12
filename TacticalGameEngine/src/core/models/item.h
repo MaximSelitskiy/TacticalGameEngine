@@ -20,6 +20,7 @@ namespace Engine::Core::Models {
         std::string getName() const { return name_; }
         std::string getType() const { return type_; }
         std::string getId() const { return id_; }
+        void setId(std::string id) { id_ = std::move(id); }
         void CreateConfigFile(std::string file_path);
         void CreateConfigFile(std::string file_path, std::string port = "80");
 

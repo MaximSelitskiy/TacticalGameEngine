@@ -76,6 +76,8 @@ namespace Engine::Core::Models {
 		}
 		const std::vector<std::unique_ptr<Unit>>& getUnitPool() const { return unit_pool_; }
 
+		 std::vector<std::unique_ptr<Unit>>& getUnitPool()  { return unit_pool_; }
+
 		void addItemToPool(std::unique_ptr<Item> new_item) {
 			item_pool_.push_back(std::move(new_item));
 		}
