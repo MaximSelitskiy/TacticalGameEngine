@@ -27,7 +27,7 @@ namespace Engine::Core::Models {
 
 		std::shared_ptr<Interfaces::ILogger> logger_;
 	public:
-		Project(std::string name, std::shared_ptr<Interfaces::ILogger> logger) : name_(name), logger_(logger) {
+		Project(std::string name, std::shared_ptr<Interfaces::ILogger> logger) : name_(std::move(name)), logger_(logger) {
 			active_map_ = std::make_unique<Map>("Deafult Map", 10, 10);
 
 			allowed_unit_types_ = { "ENEMY", "FRIEND" };
@@ -76,7 +76,7 @@ namespace Engine::Core::Models {
 		}
 		const std::vector<std::unique_ptr<Unit>>& getUnitPool() const { return unit_pool_; }
 
-		 std::vector<std::unique_ptr<Unit>>& getUnitPool()  { return unit_pool_; }
+		std::vector<std::unique_ptr<Unit>>& getUnitPool() { return unit_pool_; }
 
 		void addItemToPool(std::unique_ptr<Item> new_item) {
 			item_pool_.push_back(std::move(new_item));

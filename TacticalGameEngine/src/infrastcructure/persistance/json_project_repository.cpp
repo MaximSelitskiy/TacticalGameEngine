@@ -30,9 +30,9 @@ namespace Engine::Infrastructure::Persistence {
         if (!project.getUnitPool().empty()) {
             j["unit_pool"] = json::array();
             for (const auto& unit : project.getUnitPool()) {
-                if (!unit) {
-                    continue;
-                }
+                //if (!unit) {
+                //    continue;
+                //}
                 json unit_json = { {"name", unit->getName()}, {"id", unit->getId()}, {"type", unit->getType()} };
                 if (unit->isPlaced()) {
                     auto pos = unit->getPosition();
@@ -101,7 +101,7 @@ namespace Engine::Infrastructure::Persistence {
         //WRITING TO FILE
         std::ofstream file(filepath);
         if (file.is_open()) {
-            file << j.dump();
+            file << j.dump(3);
             logger_->info("PROJECT SAVED TO " + filepath);
         }
         else {

@@ -20,7 +20,7 @@ namespace Engine::Core::Models {
     public:
         Unit(std::string name, std::string type) :
             name_(std::move(name)),
-            type_(type),
+            type_(std::move(type)),
             id_(std::move(Utils::generateId())),
             position_(std::nullopt){}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
         ~Unit() = default;

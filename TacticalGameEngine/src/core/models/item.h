@@ -14,7 +14,7 @@ namespace Engine::Core::Models {
     public:
         Item(std::string name, std::string type) :
             name_(std::move(name)),
-            type_(type),
+            type_(std::move(type)),
             id_(std::move(Utils::generateId())) {}//ДОБАВИТЬ MOVE ДЛЯ СТРОК
         ~Item() = default;
         std::string getName() const { return name_; }

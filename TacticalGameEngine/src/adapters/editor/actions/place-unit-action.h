@@ -64,6 +64,7 @@ namespace Engine::Adapters::Editor::Actions {
 			unit_pool[unit_number_ - 1]->setPosition(x_pos, y_pos);
 			auto& unit = unit_pool[unit_number_ - 1];
 			project.spawnUnit(std::move(unit));
+			unit_pool.erase(unit_pool.begin() + unit_number_ - 1);
 			logger_->info("UNIT SUCCESFULLY PLACED!");
 		}
 		std::string getName() const override { return "Place Unit"; }
