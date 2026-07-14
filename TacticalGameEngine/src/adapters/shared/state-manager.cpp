@@ -19,6 +19,13 @@ namespace Engine::Adapters::Shared {
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::PlaceUnitAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::PlaceItemAction>(logger_));
 		editor_menu_->registerAction(std::make_unique<Editor::Actions::SaveProjectAction>(logger_, repo));
+		editor_menu_->registerAction(std::make_unique<Editor::Actions::LoadProjectAction>(
+			logger_,
+			repo,
+			[this](std::unique_ptr<Core::Models::Project> new_project) {
+				this->loadNewProject(std::move(new_project));
+			}
+		));
 		editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
 	}
 	void StateManager::changeState(AppState new_state) {
@@ -79,5 +86,12 @@ namespace Engine::Adapters::Shared {
 
 	bool StateManager::isExiting() const {
 		return current_state_ == AppState::Exit;
+	}
+
+	void StateManager::loadNewProject(std::unique_ptr<Core::Models::Project> new_project) {
+		temporary_project_ = std::move(new_project);
+		editor_state_ = std::make_unique<Editor::EditorState>(std::move(temporary_project_));
+		current_state_ = AppState::Editor;
+		logger_->info("EDITOR STATE SUCCESSFULLY RELOADED WITH LOADED PROJECT");
 	}
 }

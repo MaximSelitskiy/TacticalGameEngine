@@ -4,8 +4,10 @@
 #include "src/infrastcructure/persistance/json_project_repository.h"
 #include "src/adapters/shared/state-manager.h"
 #include <memory>
+#include <filesystem>
 int main()
 {
+	std::filesystem::create_directory("saves");
 	auto logger = std::make_shared<Engine::Infrastructure::Logging::LoggerConsole>();
 	auto project = std::make_unique<Engine::Core::Models::Project>("project_moon",logger);
 	auto repository = std::make_shared<Engine::Infrastructure::Persistence::JsonProjectRepository>(logger);

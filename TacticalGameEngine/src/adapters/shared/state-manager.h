@@ -6,6 +6,7 @@
 #include "../editor/actions/place-unit-action.h"
 #include "../editor/actions/place-item-action.h"
 #include "../editor/actions/save-project-action.h"
+#include "../editor/actions/load-project-action.h"
 #include "../editor/editor-state.h"
 #include "../editor/menu-components.h"
 #include "../../core/runtime/game-engine.h"
@@ -31,6 +32,7 @@ namespace Engine::Adapters::Shared {
 			std::shared_ptr<Core::Interfaces::IProjectRepository> repo);
 		~StateManager() = default;
 		void changeState(AppState new_state);
+		void loadNewProject(std::unique_ptr<Core::Models::Project> new_project);
 		void update();
 		bool isExiting() const;
 	};

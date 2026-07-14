@@ -6,62 +6,108 @@ using json = nlohmann::json;
 
 namespace Engine::Infrastructure::Persistence {
 
-	void JsonProjectRepository::save(const Core::Models::Project& project, const std::string& filepath) {
-		json j;
+    void JsonProjectRepository::save(const Core::Models::Project& project, const std::string& filepath) {
+        json j;
 
-		//SERIALIZING
-		j["project_name"] = project.getName();
+        //SERIALIZING
+        j["project_name"] = project.getName();
 
-		//MAP
-		auto map_size = project.getMap().getSize();
-		j["map"] = {
-			{"name", project.getMap().getName() },
-			{"id", project.getMap().getId()},
-			{"width", map_size.x},
-			{"height" , map_size.y}
-		};
+        //MAP
+        auto map_size = project.getMap().getSize();
+        j["map"] = {
+            {"name", project.getMap().getName() },
+            {"id", project.getMap().getId()},
+            {"width", map_size.x},
+            {"height" , map_size.y}
+        };
 
-		//AVAILABLE UNIT AND ITEM TYPES
-		j["available_unit_types"] = project.getAvailableUnitTypes();
-		j["available_item_types"] = project.getAvailableItemTypes();
+        //AVAILABLE UNIT AND ITEM TYPES
+        j["available_unit_types"] = project.getAvailableUnitTypes();
+        j["available_item_types"] = project.getAvailableItemTypes();
+        const auto& unitts = project.getUnitPool();
+        logger_->info("REAL POOL SIZE: " + std::to_string(unitts.size()));
+        //AVAILABLE UNIT POOL
+        if (!project.getUnitPool().empty()) {
+            j["unit_pool"] = json::array();
+            for (const auto& unit : project.getUnitPool()) {
+                if (!unit) {
+                    continue;
+                }
+                json unit_json = { {"name", unit->getName()}, {"id", unit->getId()}, {"type", unit->getType()} };
+                if (unit->isPlaced()) {
+                    auto pos = unit->getPosition();
+                    unit_json["pos"] = { {"x", pos->x}, {"y", pos->y} };
+                }
+                nlohmann::json inventory_array = nlohmann::json::array();
+                for (const auto& item : unit->getInventory()) {
+                    nlohmann::json i_json;
+                    i_json["id"] = item->getId();
+                    i_json["name"] = item->getName();
+                    i_json["type"] = item->getType();
+                    inventory_array.push_back(i_json);
+                }
+                unit_json["inventory"] = inventory_array;
+                j["unit_pool"].push_back(unit_json);
+            }
+        }
 
-		//AVAILABLE UNIT POOL
-		j["unit_pool"] = json::array();
-		for (const auto& unit : project.getUnitPool()) {
-			json unit_json = { {"name",unit->getName()},{"id", unit->getId()},{"type", unit->getType() } };
-			if (unit->isPlaced()) {
-				auto pos = unit->getPosition();
-				unit_json["pos"] = { {"x", pos->x}, {"y", pos->y} };
-			}
-			nlohmann::json inventory_array = nlohmann::json::array();
-			for (const auto& item : unit->getInventory()) {
-				nlohmann::json i_json;
-				i_json["id"] = item->getId();
-				i_json["name"] = item->getName();
-				i_json["type"] = item->getType();
+        //AVAILABLE ITEM POOL
+        if (!project.getItemPool().empty()) {
+            j["item_pool"] = json::array();
+            for (const auto& item : project.getItemPool()) {
+                if (!item) {
+                    continue;
+                }
+                json item_json = { {"name", item->getName()}, {"id", item->getId()}, {"type", item->getType()} };
+                j["item_pool"].push_back(item_json); 
+            }
+        }
 
-				inventory_array.push_back(i_json);
-			}
-			unit_json["inventory"] = inventory_array;
-			j["unit_pool"].push_back(unit_json);
-		}
+        //UNITS IN WORLD
+        if (!project.getUnitsInWorld().empty()) {
+            j["units_in_world"] = json::array();
+            for (const auto& unit : project.getUnitsInWorld()) {
+                if (!unit) {
+                    continue;
+                }
+                json unit_json = { {"name", unit->getName()}, {"id", unit->getId()}, {"type", unit->getType()} };
+                if (unit->isPlaced()) {
+                    auto pos = unit->getPosition();
+                    unit_json["pos"] = { {"x", pos->x}, {"y", pos->y} };
+                }
 
-		//AVAILABLE ITEM TYPES
-		j["item_pool"] = json::array();
-		for (const auto& item : project.getItemPool()) {
-			json item_json = { {"name", item->getName()},{"id" , item->getId()}, {"type" , item->getType()} };
-		}
+                nlohmann::json inventory_array = nlohmann::json::array();
+                for (const auto& item : unit->getInventory()) {
+                    nlohmann::json i_json = { {"id", item->getId()}, {"name", item->getName()}, {"type", item->getType()} };
+                    inventory_array.push_back(i_json);
+                }
+                unit_json["inventory"] = inventory_array;
+                j["units_in_world"].push_back(unit_json);
+            }
+        }
 
-		//WRITING TO FILE
-		std::ofstream file(filepath);
-		if (file.is_open()) {
-			file << j.dump();
-			logger_->info("PROJECT SAVED TO " + filepath);
-		}
-		else {
-			logger_->errror("FAILED TO OPEN FILE FOR SAVING: " + filepath);
-		}
-	}
+        //ITEMS IN WORLD
+        if (!project.getItemsInWorld().empty()) {
+            j["items_in_world"] = json::array();
+            for (const auto& item : project.getItemsInWorld()) {
+                if (!item) {
+                    continue;
+                }
+                json item_json = { {"name", item->getName()}, {"id", item->getId()}, {"type", item->getType()} };
+                j["items_in_world"].push_back(item_json);
+            }
+        }
+
+        //WRITING TO FILE
+        std::ofstream file(filepath);
+        if (file.is_open()) {
+            file << j.dump();
+            logger_->info("PROJECT SAVED TO " + filepath);
+        }
+        else {
+            logger_->errror("FAILED TO OPEN FILE FOR SAVING: " + filepath);
+        }
+    }
 
 	std::unique_ptr<Core::Models::Project> JsonProjectRepository::load(const std::string& filepath) {
 		std::ifstream file(filepath);
