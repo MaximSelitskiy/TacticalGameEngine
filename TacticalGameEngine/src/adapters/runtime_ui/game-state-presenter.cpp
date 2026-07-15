@@ -10,7 +10,7 @@ namespace Engine::Adapters::RuntimeUI {
     void GameStatePresenter::drawGrid(const Core::Models::Project& project) const {
         auto& map = project.getMap();
         Core::Models::Vec2 size = map.getSize();
-        auto& unit_pool = project.getUnitPool();
+        auto& unit_pool = project.getUnitsInWorld();
 
         std::cout << "--- MAP: " << map.getName() << " (" << size.x << "x" << size.y << ") ---" << std::endl;
 
@@ -38,7 +38,7 @@ namespace Engine::Adapters::RuntimeUI {
         std::cout << "UNITS IN WORLD:" << std::endl;
 
         bool any_placed = false;
-        for (const auto& unit : project.getUnitPool()) {
+        for (const auto& unit : project.getUnitsInWorld()) {
             if (unit->isPlaced()) {
                 auto pos = unit->getPosition();
                 std::cout << " - [" << unit->getType() << "] " << unit->getName()

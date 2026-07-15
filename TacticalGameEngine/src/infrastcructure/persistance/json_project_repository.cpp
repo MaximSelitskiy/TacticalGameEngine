@@ -149,6 +149,29 @@ namespace Engine::Infrastructure::Persistence {
 			project->addUnitToPool(std::move(unit));
 		}
 
+        //UNITS IN WORLD
+        for (const auto& u_json : j["units_in_world"]) {
+            auto unit = std::make_unique<Core::Models::Unit>(
+                u_json["name"].get<std::string>(),
+                u_json["type"].get<std::string>()
+            );
+            unit->setId(u_json["id"].get<std::string>());
+            if (u_json.contains("pos")) {
+                unit->setPosition(u_json["pos"]["x"].get<int>(), u_json["pos"]["y"].get<int>());
+            }
+            if (u_json.contains("inventory")) {
+                for (const auto& i_json : u_json["inventory"]) {
+                    auto item = std::make_unique<Core::Models::Item>(
+                        i_json["name"].get<std::string>(),
+                        i_json["type"].get<std::string>()
+                    );
+                    item->setId(i_json["id"].get<std::string>());
+                    unit->addItem(std::move(item));
+                }
+            }
+            project->spawnUnit(std::move(unit));
+        }
+
 		//ITEM POOL
 		for (const auto& item_json : j["item_pool"]) {
 			auto item = std::make_unique<Core::Models::Item>(item_json["name"], item_json["type"]);
