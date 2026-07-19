@@ -85,7 +85,7 @@ namespace Engine::Adapters::Shared
 		case AppState::Editor:
 			if (editor_state_)
 			{
-				editor_menu_->update(*editor_state_, *this);
+				editor_menu_->update(*editor_state_);
 			}
 			break;
 		case AppState::Runtime:

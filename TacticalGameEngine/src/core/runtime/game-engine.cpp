@@ -20,10 +20,10 @@ namespace Engine::Core::Runtime
 		}
 		is_running_ = true;
 		logger_->info("ENGINE STARTED");
-		if (std::cin.peek() == '\n')
-		{
-			std::cin.ignore();
-		}
+		// if (std::cin.peek() == '\n')
+		// {
+		// 	std::cin.ignore();
+		// }
 	}
 
 	void GameEngine::update()

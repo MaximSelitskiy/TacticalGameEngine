@@ -1,61 +1,79 @@
 #include "menu-components.h"
-#include "../shared/state-manager.h"
-#include <iostream>
 
-namespace Engine::Adapters::Editor {
+namespace Engine::Adapters::Editor
+{
 
-	MenuComponents::MenuComponents(std::shared_ptr<Core::Interfaces::ILogger> logger) : logger_(logger) {}
+    MenuComponents::MenuComponents(std::shared_ptr<Core::Interfaces::ILogger> logger) : logger_(logger) {}
 
-	void MenuComponents::registerAction(std::unique_ptr<IEditorAction> action) {
-		if(!action){
-			logger_->errror("INVALID ACTION");
-			return;
-		}
-		actions_.push_back(std::move(action));
-	}
-
-    void MenuComponents::draw() const {
-        std::cout << "\n===== EDITOR MENU =====" << std::endl;
-        for (size_t i = 0; i < actions_.size(); ++i) {
-            std::cout << (i + 1) << ". " << actions_[i]->getName() << std::endl;
+    void MenuComponents::registerAction(std::unique_ptr<IEditorAction> action)
+    {
+        if (!action)
+        {
+            logger_->errror("INVALID ACTION");
+            return;
         }
-        std::cout << "-------------------------------" << std::endl;
-        std::cout << "8. Start Game Simulation (Runtime)" << std::endl;
-        std::cout << "0. Exit Application" << std::endl;
-        std::cout << "===============================" << std::endl;
-        std::cout << "Enter your choice: ";
+        actions_.push_back(std::move(action));
     }
 
-    void MenuComponents::update(EditorState& editor_state, Shared::StateManager& state_manager) {
-        draw();
+    void MenuComponents::update(EditorState &editor_state)
+{
+    using namespace ftxui;
 
-        int choice;
-        if (!(std::cin >> choice)) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            logger_->warn("INVALID INPUT");
-            return;
-        }
-
-        switch (choice) {
-        case 0:
-            state_manager.changeState(Shared::AppState::Exit);
-            return;
-            break;
-        case 8:
-            state_manager.changeState(Shared::AppState::Runtime);
-            return;
-            break;
-        default:
-            break;
-        }
-
-        size_t action_index = static_cast<size_t>(choice - 1);
-        if (action_index < actions_.size()) {
-            actions_[action_index]->execute(editor_state);
-        }
-        else {
-            logger_->warn("INVALID INPUT/INDEX");
-        }
+    std::vector<std::string> menu_entries;
+    for (const auto &action : actions_)
+    {
+        menu_entries.push_back(action->getName());
     }
+
+    if (menu_entries.empty()) {
+        logger_->warn("NO ACTIONS REGISTERED IN MENU");
+        return;
+    }
+
+    int selected = 0;
+    ftxui::MenuOption option;
+    option.on_enter = [&]() {};
+
+    auto menu_component = Menu(&menu_entries, &selected, option);
+
+    auto renderer = Renderer(menu_component, [&]() -> Element { 
+        return window(
+            text(" EDITOR MENU ") | bold | color(Color::Blue) | hcenter,
+            vbox({
+                text("Use Up/Down arrows to navigate, Enter to select.") | dim | hcenter,
+                separator(),
+                menu_component->Render(),
+                separator(),
+                text("Status: Ready") | color(Color::GrayDark)
+            })
+        ) | center; 
+    });
+
+    auto screen = ScreenInteractive::TerminalOutput();
+
+    auto event_handler = CatchEvent(renderer, [&](Event event) {
+        if (event == Event::Return) {
+            screen.ExitLoopClosure()(); 
+            return true;
+        }
+        if (event == Event::Escape) {
+            selected = static_cast<int>(actions_.size() - 1);
+            screen.ExitLoopClosure()();
+            return true;
+        }
+        return false; 
+    });
+
+    screen.Loop(event_handler);
+
+    size_t choice = static_cast<size_t>(selected);
+    if (choice < actions_.size())
+    {
+        actions_[choice]->execute(editor_state);
+    }
+    else
+    {
+        logger_->warn("INVALID INDEX SELECTION");
+    }
+}
 }
