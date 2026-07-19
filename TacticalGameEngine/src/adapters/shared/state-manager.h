@@ -7,9 +7,14 @@
 #include "../editor/actions/place-item-action.h"
 #include "../editor/actions/save-project-action.h"
 #include "../editor/actions/load-project-action.h"
+#include "../editor/actions/run-simulation-action.h"
+#include "../editor/actions/exit-app-action.h"
 #include "../editor/editor-state.h"
 #include "../editor/menu-components.h"
 #include "../../core/runtime/game-engine.h"
+#include "../runtime_ui/game-state-presenter.h"
+#include "../runtime_ui/game-terminal-presenter.h"
+#include <memory>
 
 namespace Engine::Adapters::Shared {
 	enum class AppState {
