@@ -1,7 +1,10 @@
 #pragma once
 
+#include "../../core/models/map.h"
 #include "../../core/models/project.h"
 #include "../../core/interfaces/IGamePresenter.h"
+
+#include <iostream>
 
 namespace Engine::Adapters::RuntimeUI {
 

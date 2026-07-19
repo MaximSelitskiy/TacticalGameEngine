@@ -1,7 +1,5 @@
 #include "game-state-presenter.h"
-#include "../../core/models/map.h"
 
-#include "iostream"
 
 namespace Engine::Adapters::RuntimeUI {
 	void GameStatePresenter::clearScreen() const {

@@ -1,6 +1,6 @@
 #include "state-manager.h"
 #include "../runtime_ui/game-state-presenter.h"
-
+#include "../runtime_ui/game-terminal-presenter.h"
 #include <memory>
 
 namespace Engine::Adapters::Shared {
@@ -47,7 +47,7 @@ namespace Engine::Adapters::Shared {
 			current_state_ = AppState::Editor;
 			break;
 		case AppState::Runtime: {
-			auto presenter = std::make_shared<RuntimeUI::GameStatePresenter>();
+			auto presenter = std::make_shared<RuntimeUI::GameTerminalPresenter>();
 			game_engine_ = std::make_unique<Core::Runtime::GameEngine>(std::move(temporary_project_), logger_, presenter);
 			game_engine_->start();
 			logger_->info("ENGINE IS RUNNNING");
