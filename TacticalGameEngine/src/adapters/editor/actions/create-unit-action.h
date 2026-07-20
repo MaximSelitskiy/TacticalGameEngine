@@ -18,9 +18,9 @@ namespace Engine::Adapters::Editor::Actions
 
 		~CreateUnitTypeAction() override = default;
 
-		CreateUnitTypeAction(const CreateUnitTypeAction &other) = delete;
+		CreateUnitTypeAction(const CreateUnitTypeAction &) = delete;
 
-		CreateUnitTypeAction &operator=(const CreateUnitTypeAction &other) = delete;
+		CreateUnitTypeAction &operator=(const CreateUnitTypeAction &) = delete;
 
 		CreateUnitTypeAction(CreateUnitTypeAction &&other) noexcept = default;
 

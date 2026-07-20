@@ -18,9 +18,9 @@ namespace Engine::Adapters::Editor::Actions
 
         ~ResizeMapAction() override = default;
 
-        ResizeMapAction(const ResizeMapAction &other) = delete;
+        ResizeMapAction(const ResizeMapAction &) = delete;
 
-        ResizeMapAction &operator=(const ResizeMapAction &other) = delete;
+        ResizeMapAction &operator=(const ResizeMapAction &) = delete;
 
         ResizeMapAction(ResizeMapAction &&other) noexcept = default;
 

@@ -18,16 +18,9 @@ namespace Engine::Adapters::Editor::Actions
 
         ~ExitAppAction() override = default;
 
-        ExitAppAction(const ExitAppAction &other) : on_exit_app_(other.on_exit_app_) {}
+        ExitAppAction(const ExitAppAction &) = delete;
 
-        ExitAppAction &operator=(const ExitAppAction &other)
-        {
-            if (this != &other)
-            {
-                on_exit_app_ = other.on_exit_app_;
-            }
-            return *this;
-        }
+        ExitAppAction &operator=(const ExitAppAction &) = delete;
 
         ExitAppAction(ExitAppAction &&other) noexcept : on_exit_app_(std::move(other.on_exit_app_)) {}
 

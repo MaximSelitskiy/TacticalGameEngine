@@ -16,16 +16,9 @@ namespace Engine::Adapters::Editor::Actions
                             std::function<void()> on_run_simulation)
             : IEditorAction(logger), on_run_simulation_(on_run_simulation) {}
 
-        RunSimulationAction(const RunSimulationAction &other) : on_run_simulation_(other.on_run_simulation_) {}
+        RunSimulationAction(const RunSimulationAction &) = delete;
 
-        RunSimulationAction &operator=(const RunSimulationAction &other)
-        {
-            if (this != &other)
-            {
-                on_run_simulation_ = other.on_run_simulation_;
-            }
-            return *this;
-        }
+        RunSimulationAction &operator=(const RunSimulationAction &) = delete;
 
         RunSimulationAction(RunSimulationAction &&other) noexcept : on_run_simulation_(std::move(other.on_run_simulation_)) {}
 

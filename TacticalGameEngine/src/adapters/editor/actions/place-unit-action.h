@@ -17,9 +17,9 @@ namespace Engine::Adapters::Editor::Actions
 
 		~PlaceUnitAction() = default;
 
-		PlaceUnitAction(const PlaceUnitAction &other) = delete;
+		PlaceUnitAction(const PlaceUnitAction &) = delete;
 
-		PlaceUnitAction &operator=(const PlaceUnitAction &other) = delete;
+		PlaceUnitAction &operator=(const PlaceUnitAction &) = delete;
 
 		PlaceUnitAction(PlaceUnitAction &&other) noexcept = default;
 

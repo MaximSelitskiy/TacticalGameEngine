@@ -17,9 +17,9 @@ namespace Engine::Adapters::Editor::Actions
 
 		~PlaceItemAction() override = default;
 
-		PlaceItemAction(const PlaceItemAction &other) = delete;
+		PlaceItemAction(const PlaceItemAction &) = delete;
 
-		PlaceItemAction &operator=(const PlaceItemAction &other) = delete;
+		PlaceItemAction &operator=(const PlaceItemAction &) = delete;
 
 		PlaceItemAction(PlaceItemAction &&other) noexcept = default;
 

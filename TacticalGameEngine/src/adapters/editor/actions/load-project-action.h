@@ -26,20 +26,9 @@ namespace Engine::Adapters::Editor::Actions
 
         ~LoadProjectAction() override = default;
 
-        LoadProjectAction(const LoadProjectAction &other) : repo_(other.repo_),
-                                                            on_project_loaded_(other.on_project_loaded_),
-                                                            save_folder_(other, save_folder_) {}
+        LoadProjectAction(const LoadProjectAction &) = delete;
 
-        LoadProjectAction &operator=(const LoadProjectAction &other)
-        {
-            if (this != &other)
-            {
-                repo_ = other.repo_;
-                on_project_loaded_ = other.on_project_loaded_;
-                save_folder_ = other.save_folder_;
-            }
-            return *this;
-        }
+        LoadProjectAction &operator=(const LoadProjectAction &) = delete;
 
         LoadProjectAction(LoadProjectAction &&other) noexcept : repo_(std::move(other.repo_)),
                                                                 on_project_loaded_(std::move(other.on_project_loaded_)),

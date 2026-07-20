@@ -17,9 +17,9 @@ namespace Engine::Adapters::Editor::Actions
 
 		~CreateItemTypeAction() override = default;
 
-		CreateItemTypeAction(const CreateItemTypeAction &other) = delete;
+		CreateItemTypeAction(const CreateItemTypeAction &) = delete;
 
-		CreateItemTypeAction &operator=(const CreateItemTypeAction &other) = delete;
+		CreateItemTypeAction &operator=(const CreateItemTypeAction &) = delete;
 
 		CreateItemTypeAction(CreateItemTypeAction &&other) noexcept = default;
 
