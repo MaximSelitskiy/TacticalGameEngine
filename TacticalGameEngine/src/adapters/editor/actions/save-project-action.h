@@ -19,6 +19,34 @@ namespace Engine::Adapters::Editor::Actions
                           std::shared_ptr<Core::Interfaces::IProjectRepository> repo)
             : IEditorAction(logger), repo_(repo) {}
 
+        ~SaveProjectAction() override = default;
+
+        SaveProjectAction(const SaveProjectAction &other) : repo_(other.repo_),
+                                                            save_folder_(other.save_folder_) {}
+
+        SaveProjectAction &operator=(const SaveProjectAction &other)
+        {
+            if (this != &other)
+            {
+                repo_ = other.repo_;
+                save_folder_ = other.save_folder_;
+            }
+            return *this
+        }
+
+        SaveProjectAction(SaveProjectAction &&other) noexcept : repo_(std::move(other.repo_)),
+                                                                save_folder_(std::move(other.save_folder_)) {}
+
+        SaveProjectAction &operator=(SaveProjectAction &&other) noexcept
+        {
+            if (this != &other)
+            {
+                repo_ = std::move(other.repo_);
+                save_folder_ = std::move(other.save_folder_);
+            }
+            return *this;
+        }
+
         std::string getName() const override { return "Save Project to JSON"; }
 
         void execute(EditorState &editor_state) override
