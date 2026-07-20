@@ -17,14 +17,17 @@
 
 #include <memory>
 
-namespace Engine::Adapters::Shared {
-	enum class AppState {
+namespace Engine::Adapters::Shared
+{
+	enum class AppState
+	{
 		Editor,
 		Runtime,
 		Exit
 	};
 
-	class StateManager {
+	class StateManager
+	{
 	private:
 		AppState current_state_;
 		std::shared_ptr<Core::Interfaces::ILogger> logger_;
@@ -32,15 +35,44 @@ namespace Engine::Adapters::Shared {
 		std::unique_ptr<Core::Runtime::GameEngine> game_engine_;
 		std::unique_ptr<Core::Models::Project> temporary_project_;
 		std::unique_ptr<Editor::MenuComponents> editor_menu_;
+
 	public:
 		StateManager(std::shared_ptr<Core::Interfaces::ILogger> logger,
-			std::unique_ptr<Core::Models::Project> project,
-			std::shared_ptr<Core::Interfaces::IProjectRepository> repo);
+					 std::unique_ptr<Core::Models::Project> project,
+					 std::shared_ptr<Core::Interfaces::IProjectRepository> repo);
+
 		~StateManager() = default;
+
+		StateManager(const StateManager &) = delete;
+		
+		StateManager &operator=(const StateManager &) = delete;
+
+		StateManager(StateManager &&other) noexcept
+			: current_state_(other.current_state_),
+			  logger_(std::move(other.logger_)),
+			  editor_state_(std::move(other.editor_state_)),
+			  game_engine_(std::move(other.game_engine_)),
+			  temporary_project_(std::move(other.temporary_project_)),
+			  editor_menu_(std::move(other.editor_menu_)) {}
+
+		StateManager &operator=(StateManager &&other) noexcept
+		{
+			if (this != &other)
+			{
+				current_state_ = other.current_state_;
+				logger_ = std::move(other.logger_);
+				editor_state_ = std::move(other.editor_state_);
+				game_engine_ = std::move(other.game_engine_);
+				temporary_project_ = std::move(other.temporary_project_);
+				editor_menu_ = std::move(other.editor_menu_);
+			}
+			return *this;
+		}
+
 		void changeState(AppState new_state);
 		void loadNewProject(std::unique_ptr<Core::Models::Project> new_project);
 		void update();
 		bool isExiting() const;
 	};
-	
+
 }
