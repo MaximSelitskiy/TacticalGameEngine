@@ -15,6 +15,9 @@ namespace Engine::Adapters::RuntimeUI
     class GameTerminalPresenter : public Core::Interfaces::IGamePresenter
     {
     public:
+
+        GameTerminalPresenter() = default;
+
         ~GameTerminalPresenter() override = default;
 
         GameTerminalPresenter(const GameTerminalPresenter &) = default;
