@@ -21,19 +21,20 @@ namespace Engine::Adapters::Editor::Actions
 
         ~SaveProjectAction() override = default;
 
-        SaveProjectAction(const SaveProjectAction &)  = delete;
+        SaveProjectAction(const SaveProjectAction &) = delete;
 
         SaveProjectAction &operator=(const SaveProjectAction &) = delete;
-        
-        SaveProjectAction(SaveProjectAction &&other) noexcept : repo_(std::move(other.repo_)),
+
+        SaveProjectAction(SaveProjectAction &&other) noexcept : IEditorAction(std::move(other.logger_)),
+                                                                repo_(std::move(other.repo_)),
                                                                 save_folder_(std::move(other.save_folder_)) {}
 
         SaveProjectAction &operator=(SaveProjectAction &&other) noexcept
         {
             if (this != &other)
             {
+                IEditorAction::operator=(std::move(other));
                 repo_ = std::move(other.repo_);
-                save_folder_ = std::move(other.save_folder_);
             }
             return *this;
         }

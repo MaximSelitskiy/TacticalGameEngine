@@ -30,17 +30,18 @@ namespace Engine::Adapters::Editor::Actions
 
         LoadProjectAction &operator=(const LoadProjectAction &) = delete;
 
-        LoadProjectAction(LoadProjectAction &&other) noexcept : repo_(std::move(other.repo_)),
+        LoadProjectAction(LoadProjectAction &&other) noexcept : IEditorAction(std::move(other.logger_)),
+                                                                repo_(std::move(other.repo_)),
                                                                 on_project_loaded_(std::move(other.on_project_loaded_)),
-                                                                save_folder_(std::move(save_folder_)) {}
+                                                                save_folder_(std::move(other.save_folder_)) {}
 
         LoadProjectAction &operator=(LoadProjectAction &&other) noexcept
         {
             if (this != &other)
             {
+                IEditorAction::operator=(std::move(other));
                 repo_ = std::move(other.repo_);
                 on_project_loaded_ = std::move(other.on_project_loaded_);
-                save_folder_ = std::move(other.save_folder_);
             }
             return *this;
         }

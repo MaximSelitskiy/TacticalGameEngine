@@ -20,12 +20,14 @@ namespace Engine::Adapters::Editor::Actions
 
         RunSimulationAction &operator=(const RunSimulationAction &) = delete;
 
-        RunSimulationAction(RunSimulationAction &&other) noexcept : on_run_simulation_(std::move(other.on_run_simulation_)) {}
+        RunSimulationAction(RunSimulationAction &&other) noexcept : IEditorAction(std::move(other.logger_)),
+                                                                    on_run_simulation_(std::move(other.on_run_simulation_)) {}
 
         RunSimulationAction &operator=(RunSimulationAction &&other) noexcept
         {
             if (this != &other)
             {
+                IEditorAction::operator=(std::move(other));
                 on_run_simulation_ = std::move(other.on_run_simulation_);
             }
             return *this;

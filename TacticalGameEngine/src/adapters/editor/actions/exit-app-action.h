@@ -22,7 +22,8 @@ namespace Engine::Adapters::Editor::Actions
 
         ExitAppAction &operator=(const ExitAppAction &) = delete;
 
-        ExitAppAction(ExitAppAction &&other) noexcept : on_exit_app_(std::move(other.on_exit_app_)) {}
+        ExitAppAction(ExitAppAction &&other) noexcept : IEditorAction(std::move(other.logger_)),
+                                                        on_exit_app_(std::move(other.on_exit_app_)) {}
 
         ExitAppAction &operator=(ExitAppAction &&other) noexcept
         {
