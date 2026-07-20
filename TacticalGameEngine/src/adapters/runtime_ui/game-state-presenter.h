@@ -17,16 +17,10 @@ namespace Engine::Adapters::RuntimeUI
         void drawHUD(const Core::Models::Project &project) const;
 
     public:
+        GameStatePresenter() = default;
+
         ~GameStatePresenter() override = default;
 
-        GameStatePresenter(const GameStatePresenter &) = default;
-
-        GameStatePresenter &operator=(const GameStatePresenter &) = default;
-
-        GameStatePresenter(GameStatePresenter &&) noexcept = default;
-
-        GameStatePresenter &operator=(GameStatePresenter &&) noexcept = default;
-        
         void present(const Core::Models::Project &project) const override;
     };
 

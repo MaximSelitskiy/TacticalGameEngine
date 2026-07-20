@@ -9,6 +9,7 @@ namespace Engine::Infrastructure::Persistence {
         std::shared_ptr<Core::Interfaces::ILogger> logger_;
     public:
         JsonProjectRepository(std::shared_ptr<Core::Interfaces::ILogger> logger) : logger_(logger) {}
+        ~JsonProjectRepository() override = default;
         void save(const Core::Models::Project& project, const std::string& filepath) override;
         std::unique_ptr<Core::Models::Project> load(const std::string& filepath) override;
     };

@@ -15,18 +15,9 @@ namespace Engine::Adapters::RuntimeUI
     class GameTerminalPresenter : public Core::Interfaces::IGamePresenter
     {
     public:
-
         GameTerminalPresenter() = default;
 
         ~GameTerminalPresenter() override = default;
-
-        GameTerminalPresenter(const GameTerminalPresenter &) = default;
-
-        GameTerminalPresenter &operator=(const GameTerminalPresenter &) = default;
-
-        GameTerminalPresenter(GameTerminalPresenter &&) noexcept = default;
-
-        GameTerminalPresenter &operator=(GameTerminalPresenter &&) noexcept = default;
 
         void present(const Core::Models::Project &project) const override;
     };
