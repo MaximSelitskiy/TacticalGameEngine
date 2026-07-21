@@ -3,7 +3,9 @@
 #include "../IEditorAction.h"
 #include "../../../core/interfaces/ILogger.h"
 
-#include <iostream>
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/component/component.hpp>
+#include <ftxui/dom/elements.hpp>
 #include <vector>
 #include <limits>
 
@@ -27,8 +29,9 @@ namespace Engine::Adapters::Editor::Actions
 
 		void execute(EditorState &editor_state) override
 		{
+			using namespace ftxui;
+
 			auto &project = editor_state.getEditorProject();
-			// auto& item_pool = const_cast<std::vector<std::unique_ptr<Core::Models::Item>>&>(project.getItemPool());
 			auto &item_pool = project.getItemPool();
 			const auto &unit_pool = project.getUnitPool();
 
@@ -43,40 +46,75 @@ namespace Engine::Adapters::Editor::Actions
 				return;
 			}
 
-			std::cout << "\n--- AVAILABLE ITEMS IN POOL ---" << std::endl;
-			for (size_t i = 0; i < item_pool.size(); ++i)
+			std::vector<std::string> item_names;
+			for (const auto &item : item_pool)
 			{
-				std::cout << (i + 1) << ". " << item_pool[i]->getName()
-						  << " [" << item_pool[i]->getType() << "]" << std::endl;
+				item_names.push_back(item->getName() + " [" + item->getType() + "]");
 			}
-			std::cout << "SELECT ITEM TO ASSIGN (1-" << item_pool.size() << "): ";
-			size_t item_choice;
-			while (!(std::cin >> item_choice) || item_choice < 1 || item_choice > item_pool.size())
+
+			std::vector<std::string> unit_names;
+			for (const auto &unit : unit_pool)
 			{
-				std::cin.clear();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				logger_->warn("INVALID CHOICE!");
+				unit_names.push_back(unit->getName() + " [" + unit->getType() + "]");
 			}
-			std::cout << "\n--- AVAILABLE UNITS ---" << std::endl;
-			for (size_t i = 0; i < unit_pool.size(); ++i)
+
+			int selected_item = 0;
+			int selected_unit = 0;
+
+			MenuOption menu_opt;
+			auto item_menu = Menu(&item_names, &selected_item, menu_opt);
+			auto unit_menu = Menu(&unit_names, &selected_unit, menu_opt);
+
+			auto container = Container::Vertical({item_menu,
+												  unit_menu});
+
+			auto screen = ScreenInteractive::TerminalOutput();
+			bool is_confirmed = false;
+
+			auto ui_renderer = Renderer(container, [&]() -> Element
+										{ return window(
+													 text(" GIVE ITEM TO UNIT ") | bold | color(Color::Green) | hcenter,
+													 vbox({text("Select Item:") | dim,
+														   item_menu->Render() | border | size(HEIGHT, LESS_THAN, 6),
+														   separator(),
+														   text("Select Unit:") | dim,
+														   unit_menu->Render() | border | size(HEIGHT, LESS_THAN, 6),
+														   separator(),
+														   text("Up/Down/Tab: Navigate | Enter: Confirm | 'q': Cancel") | dim | hcenter})) |
+												 center; });
+
+			auto event_handler = CatchEvent(ui_renderer, [&](Event event)
+											{
+                if (event == Event::Return) {
+                    is_confirmed = true;
+                    screen.Exit();
+                    return true;
+                }
+                if (event == Event::Character("q") || event == Event::Character("Q")) {
+                    is_confirmed = false;
+                    screen.Exit();
+                    return true;
+                }
+                return false; });
+
+			screen.Loop(event_handler);
+
+			if (!is_confirmed)
 			{
-				std::cout << (i + 1) << ". " << unit_pool[i]->getName() << std::endl;
+				logger_->info("ACTION CANCELLED.");
+				return;
 			}
-			std::cout << "SELECT UNIT (1-" << unit_pool.size() << "): ";
-			size_t unit_choice;
-			while (!(std::cin >> unit_choice) || unit_choice < 1 || unit_choice > unit_pool.size())
-			{
-				std::cin.clear();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				logger_->warn("INVALID CHOICE!");
-			}
-			auto item_it = item_pool.begin() + (item_choice - 1);
+
+			auto item_it = item_pool.begin() + selected_item;
 			std::unique_ptr<Core::Models::Item> moving_item = std::move(*item_it);
 			item_pool.erase(item_it);
+
 			std::string itemName = moving_item->getName();
-			std::string unitName = unit_pool[unit_choice - 1]->getName();
-			unit_pool[unit_choice - 1]->addItem(std::move(moving_item));
-			logger_->info("SUCCESFULLY MOVED ITEM '" + itemName + "' TO " + unitName + "'S INVENTORY.");
+			std::string unitName = unit_pool[selected_unit]->getName();
+
+			unit_pool[selected_unit]->addItem(std::move(moving_item));
+
+			logger_->info("SUCCESSFULLY MOVED ITEM '" + itemName + "' TO " + unitName + "'S INVENTORY.");
 		}
 		std::string getName() const override { return "Give Item to Unit"; }
 	};

@@ -3,6 +3,9 @@
 #include "../IEditorAction.h"
 #include "../../../core/interfaces/ILogger.h"
 
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/component/component.hpp>
+#include <ftxui/dom/elements.hpp>
 #include <string>
 #include <vector>
 #include <numeric>
@@ -28,37 +31,74 @@ namespace Engine::Adapters::Editor::Actions
 
 		void execute(EditorState &editor_state) override
 		{
-			int counter_ = 0;
-			int unit_type_;
-			std::string name_;
+			using namespace ftxui;
+
 			auto &project = editor_state.getEditorProject();
 			std::vector<std::string> types = project.Core::Models::Project::getAvailableUnitTypes();
-			logger_->info("AVAILABLE UNIT TYPES:");
-			while (counter_ != types.size())
+
+			if (types.empty())
 			{
-				logger_->info(types[counter_] + ", ");
-				counter_++;
+				logger_->warn("NO AVAILABLE UNIT TYPES FOR CREATION.");
+				return;
 			}
-			logger_->info("WRITE NUMBER OF AVAILABLE TYPE FOR UNIT CREATION (1,2,...): ");
-			std::cin >> unit_type_;
-			while (!(unit_type_ > 0 && unit_type_ <= types.size()))
+
+			int selected_type = 0;
+			MenuOption menu_opt;
+			auto menu_component = Menu(&types, &selected_type, menu_opt);
+
+			std::string unit_name_input;
+			InputOption input_opt;
+			auto input_component = Input(&unit_name_input, "Enter unit name...", input_opt);
+
+			auto container = Container::Vertical({menu_component,
+												  input_component});
+
+			auto screen = ScreenInteractive::TerminalOutput();
+			bool is_confirmed = false;
+
+			auto ui_renderer = Renderer(container, [&]() -> Element
+										{ return window(
+													 text(" CREATE UNIT ") | bold | color(Color::Green) | hcenter,
+													 vbox({text("Select Unit Type:") | dim,
+														   separator(),
+														   menu_component->Render() | border,
+														   separator(),
+														   text("Enter Unit Name:") | dim,
+														   input_component->Render() | border,
+														   separator(),
+														   text("Up/Down: Choose type | Click input: Write name | Enter: Create | 'q': Cancel") | dim | hcenter})) |
+												 center; });
+
+			auto event_handler = CatchEvent(ui_renderer, [&](Event event)
+											{
+                if (event == Event::Return) {
+                    if (unit_name_input.empty()) {
+                        return true;
+                    }
+                    is_confirmed = true;
+                    screen.Exit();
+                    return true;
+                }
+                if (event == Event::Character("q") || event == Event::Character("Q")) {
+                    is_confirmed = false;
+                    screen.Exit();
+                    return true;
+                }
+                return false; });
+
+			screen.Loop(event_handler);
+
+			if (!is_confirmed)
 			{
-				logger_->errror("USER CHOSE WRONG TYPE");
-				std::cin >> unit_type_;
+				logger_->info("UNIT CREATION CANCELLED.");
+				return;
 			}
-			logger_->info("USER CHOSE TYPE");
-			logger_->info("WRITE NAME FOR UNIT CREATION: ");
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::getline(std::cin, name_);
-			logger_->info("USER WROTE NAME");
-			auto unit = std::make_unique<Core::Models::Unit>(name_, types[unit_type_ - 1]);
+
+			std::string chosen_type = types[selected_type];
+			auto unit = std::make_unique<Core::Models::Unit>(unit_name_input, chosen_type);
 			project.addUnitToPool(std::move(unit));
-			logger_->info("UNIT " + name_ + " SUCCEFULLY CREATED!");
-			logger_->info("ALL UNITS IN WORLD:");
-			for (const auto &u : project.getUnitsInWorld())
-			{
-				logger_->info(" - " + u->getName() + " (" + u->getType() + ")");
-			}
+
+			logger_->info("UNIT " + unit_name_input + " SUCCESSFULLY CREATED!");
 		}
 		std::string getName() const override { return "Create Unit"; }
 	};

@@ -1,8 +1,14 @@
 #pragma once
+
 #include "../IEditorAction.h"
 #include "../../../core/interfaces/IProjectRepository.h"
+
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/component/component.hpp>
+#include <ftxui/dom/elements.hpp>
 #include <filesystem>
-#include <iostream>
+#include <vector>
+#include <string>
 
 namespace fs = std::filesystem;
 
@@ -43,49 +49,128 @@ namespace Engine::Adapters::Editor::Actions
 
         void execute(EditorState &editor_state) override
         {
-            logger_->info("------ PROJECT SAVING PROCESS -----");
+            using namespace ftxui;
 
-            std::vector<fs::path> save_files;
-            if (fs::exists(save_folder_) && fs::is_directory(save_folder_))
+            if (!fs::exists(save_folder_))
+            {
+                fs::create_directories(save_folder_);
+            }
+
+            std::vector<std::string> save_files;
+            if (fs::is_directory(save_folder_))
             {
                 for (const auto &entry : fs::directory_iterator(save_folder_))
                 {
                     if (entry.is_regular_file() && entry.path().extension() == ".json")
                     {
-                        save_files.push_back(entry.path());
+                        save_files.push_back(entry.path().filename().string());
                     }
                 }
             }
 
-            logger_->info("0. CANCEL LOADING");
-            for (size_t i = 0; i < save_files.size(); ++i)
-            {
-                std::string item_number = std::to_string(i + 1);
-                logger_->info(item_number + ". LOAD: " + save_files[i].filename().string());
-            }
+            int selected_file = 0;
+            ftxui::MenuOption menu_opt;
+            auto menu_component = Menu(&save_files, &selected_file, menu_opt);
 
-            logger_->info("CHOOSE OPTION: ");
-            size_t choice;
-            if (!(std::cin >> choice) || choice > save_files.size())
+            std::string new_filename_input;
+            InputOption input_opt;
+            auto input_component = Input(&new_filename_input, "my_project_name", input_opt);
+
+            int tab_selected = save_files.empty() ? 1 : 0;
+            std::vector<std::string> tab_entries = {"Overwrite Existing File", "Create New File"};
+            auto tab_toggle = Toggle(&tab_entries, &tab_selected);
+
+            auto container = Container::Vertical({
+                tab_toggle,
+                Container::Tab({
+                    menu_component,
+                    input_component,
+                }, &tab_selected)
+            });
+
+            auto screen = ScreenInteractive::TerminalOutput();
+            bool is_confirmed = false;
+
+            auto ui_renderer = Renderer(container, [&]() -> Element {
+                Element content_view;
+                if (tab_selected == 0 && !save_files.empty())
+                {
+                    content_view = vbox({
+                        text("Select file to overwrite:") | dim,
+                        separator(),
+                        menu_component->Render()
+                    });
+                }
+                else if (tab_selected == 0 && save_files.empty())
+                {
+                    content_view = text("No existing save files found.") | color(Color::Yellow);
+                }
+                else
+                {
+                    content_view = vbox({
+                        text("Enter new filename (without extension):") | dim,
+                        separator(),
+                        input_component->Render() | border
+                    });
+                }
+
+                return window(
+                    text(" SAVE PROJECT ") | bold | color(Color::Green) | hcenter,
+                    vbox({
+                        tab_toggle->Render() | hcenter,
+                        separator(),
+                        content_view,
+                        separator(),
+                        text("Tab: Switch mode | Enter: Save |'q': Cancel") | dim | hcenter
+                    })
+                ) | center;
+            });
+
+            auto event_handler = CatchEvent(ui_renderer, [&](Event event) {
+                if (event == Event::Return) {
+                    if (tab_selected == 0 && save_files.empty()) {
+                        return true;
+                    }
+                    if (tab_selected == 1 && new_filename_input.empty()) {
+                        return true;
+                    }
+                    is_confirmed = true;
+                    screen.Exit();
+                    return true;
+                }
+
+                if (event == Event::Escape || event == Event::Character("q")) {
+                    is_confirmed = false;
+                    screen.Exit();
+                    return true;
+                }
+
+                return false;
+            });
+
+            screen.Loop(event_handler);
+
+            if (!is_confirmed)
             {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                logger_->warn("INVALID CHOICE. SAVE CANCELLED.");
+                logger_->info("SAVE CANCELLED. RETURNING TO MAIN MENU.");
                 return;
             }
-            std::string final_filepath;
 
-            if (choice == 0)
+            std::string final_filepath;
+            if (tab_selected == 0)
             {
-                std::string new_name;
-                logger_->info("ENTER NEW SAVE FILE NAME (without .json): ");
-                std::cin >> new_name;
-                final_filepath = save_folder_ + "/" + new_name + ".json";
+                final_filepath = (fs::path(save_folder_) / save_files[selected_file]).string();
             }
             else
             {
-                final_filepath = save_files[choice - 1].string();
+                std::string name = new_filename_input;
+                if (name.rfind(".json") == std::string::npos || name.rfind(".json") != name.length() - 5)
+                {
+                    name += ".json";
+                }
+                final_filepath = (fs::path(save_folder_) / name).string();
             }
+
             try
             {
                 repo_->save(editor_state.getEditorProject(), final_filepath);

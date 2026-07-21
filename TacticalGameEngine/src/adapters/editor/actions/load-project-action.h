@@ -7,7 +7,6 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/dom/elements.hpp>
 #include <filesystem>
-#include <iostream>
 #include <vector>
 #include <functional>
 
@@ -22,6 +21,7 @@ namespace Engine::Adapters::Editor::Actions
         std::shared_ptr<Core::Interfaces::IProjectRepository> repo_;
         std::function<void(std::unique_ptr<Core::Models::Project>)> on_project_loaded_;
         const std::string save_folder_ = "saves";
+
     public:
         LoadProjectAction(std::shared_ptr<Core::Interfaces::ILogger> logger,
                           std::shared_ptr<Core::Interfaces::IProjectRepository> repo,
@@ -67,37 +67,54 @@ namespace Engine::Adapters::Editor::Actions
                 }
             }
 
+            if (save_files.empty())
+            {
+                logger_->warn("NO SAVE FILES FOUND IN '" + save_folder_ + "' FOLDER.");
+                return;
+            }
+
             int selected = 0;
             ftxui::MenuOption option;
             option.on_enter = [&]() {};
 
             auto menu_component = Menu(&save_files, &selected, option);
 
-            auto renderer = Renderer(menu_component, [&]() -> Element
+            auto screen = ScreenInteractive::TerminalOutput();
+
+            bool is_confirmed = false;
+
+            auto event_handler = CatchEvent(menu_component, [&](Event event)
+                                            {
+        if (event == Event::Return) {
+            is_confirmed = true;
+            screen.ExitLoopClosure()(); 
+            return true;
+        }
+
+        if (event == Event::Character("q")) {
+            is_confirmed = false;   
+            screen.ExitLoopClosure()();
+            return true;
+        }
+        return false; });
+
+            auto renderer = Renderer(event_handler, [&]() -> Element
                                      { return window(
-                                                  text(" LOADING PROJECT ") | bold | color(Color::Blue) | hcenter,
-                                                  vbox({text("Use Up/Down arrows to navigate, Enter to select.") | dim | hcenter,
+                                                  text(" LOADING PROJECT ") | bold | color(Color::Green) | hcenter,
+                                                  vbox({text("Use Up/Down arrows to navigate, Enter to select, q to exit.") | dim | hcenter,
                                                         separator(),
                                                         menu_component->Render(),
                                                         separator(),
                                                         text("Status: Ready") | color(Color::GrayDark)})) |
                                               center; });
 
-            auto screen = ScreenInteractive::TerminalOutput();
+            screen.Loop(renderer);
 
-            auto event_handler = CatchEvent(renderer, [&](Event event)
-                                            {
-        if (event == Event::Return) {
-            screen.ExitLoopClosure()(); 
-            return true;
-        }
-        if (event == Event::Escape) {
-            screen.ExitLoopClosure()();
-            return true;
-        }
-        return false; });
-
-            screen.Loop(event_handler);
+            if (!is_confirmed)
+            {
+                logger_->info("FILE SELECTION CANCELLED. RETURNING TO MAIN MENU.");
+                return;
+            }
 
             size_t choice = static_cast<size_t>(selected);
 

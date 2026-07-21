@@ -3,6 +3,9 @@
 #include "../IEditorAction.h"
 #include "../../../core/interfaces/ILogger.h"
 
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/component/component.hpp>
+#include <ftxui/dom/elements.hpp>
 #include <string>
 #include <vector>
 #include <numeric>
@@ -27,64 +30,84 @@ namespace Engine::Adapters::Editor::Actions
 
 		void execute(EditorState &editor_state) override
 		{
-			int counter_ = 0;
-			int unit_number_;
+			using namespace ftxui;
+
 			auto &project = editor_state.getEditorProject();
 			auto &unit_pool = project.getUnitPool();
 			const auto &map = project.getMap();
 			const auto &size = map.getSize();
+
 			if (unit_pool.empty())
 			{
 				logger_->warn("UNIT POOL IS EMPTY");
 				return;
 			}
-			logger_->info("AVAILABLE UNITS IN POOL:");
-			while (counter_ != unit_pool.size())
+
+			std::vector<std::string> unit_names;
+			for (const auto &unit : unit_pool)
 			{
-				std::string status;
-				if (unit_pool[counter_]->isPlaced())
-				{
-					auto pos = unit_pool[counter_]->getPosition();
-					std::string statusX = "PLACED ON X: " + std::to_string(pos->x);
-					std::string statusY = " Y: " + std::to_string(pos->y);
-					status += statusX + statusY;
-				}
-				else
-				{
-					status = "NOT PLACED";
-				}
-				logger_->info(unit_pool[counter_]->getName() + " | " + unit_pool[counter_]->getType() + " | " + status);
-				counter_++;
+				std::string status = unit->isPlaced() ? " [PLACED]" : " [NOT PLACED]";
+				unit_names.push_back(unit->getName() + " | " + unit->getType() + status);
 			}
-			logger_->info("WRITE NUMBER OF AVAILABLE TYPE FOR UNIT PLACING (1,2,...): ");
-			std::cin >> unit_number_;
-			while (!(unit_number_ > 0 && unit_number_ <= unit_pool.size()))
+
+			int selected_unit = 0;
+			MenuOption menu_opt;
+			auto unit_menu = Menu(&unit_names, &selected_unit, menu_opt);
+
+			int x_pos = 1;
+			int y_pos = 1;
+
+			auto x_slider = Slider("X Position: ", &x_pos, 1, size.x, 1);
+			auto y_slider = Slider("Y Position: ", &y_pos, 1, size.y, 1);
+
+			auto container = Container::Vertical({unit_menu,
+												  x_slider,
+												  y_slider});
+
+			auto screen = ScreenInteractive::TerminalOutput();
+			bool is_confirmed = false;
+
+			auto ui_renderer = Renderer(container, [&]() -> Element
+										{ return window(
+													 text(" PLACE UNIT ON MAP ") | bold | color(Color::Green) | hcenter,
+													 vbox({text("Select Unit:") | dim,
+														   unit_menu->Render() | border | ftxui::size(HEIGHT, LESS_THAN, 6),
+														   separator(),
+														   text("Set Coordinates:") | dim,
+														   x_slider->Render(),
+														   y_slider->Render(),
+														   separator(),
+														   text("Up/Down/Tab: Navigate | Left/Right: Adjust | Enter: Place | 'q': Cancel") | dim | hcenter})) |
+												 center; });
+
+			auto event_handler = CatchEvent(ui_renderer, [&](Event event)
+											{
+                if (event == Event::Return) {
+                    is_confirmed = true;
+                    screen.Exit();
+                    return true;
+                }
+                if (event == Event::Character("q") || event == Event::Character("Q")) {
+                    is_confirmed = false;
+                    screen.Exit();
+                    return true;
+                }
+                return false; });
+
+			screen.Loop(event_handler);
+
+			if (!is_confirmed)
 			{
-				logger_->errror("USER CHOSE WRONG TYPE");
-				std::cin >> unit_number_;
+				logger_->info("ACTION CANCELLED.");
+				return;
 			}
-			logger_->info("USER CHOSE UNIT");
-			logger_->info("WRITE POSITION X FOR UNIT PLACING: ");
-			short x_pos;
-			std::cin >> x_pos;
-			while (!(x_pos > 0 && x_pos <= size.x))
-			{
-				logger_->errror("USER CHOSE WRONG X POSITION");
-				std::cin >> x_pos;
-			}
-			logger_->info("WRITE POSITION Y FOR UNIT PLACING: ");
-			short y_pos;
-			std::cin >> y_pos;
-			while (!(y_pos > 0 && y_pos <= size.y))
-			{
-				logger_->errror("USER CHOSE WRONG Y POSITION");
-				std::cin >> y_pos;
-			}
-			unit_pool[unit_number_ - 1]->setPosition(x_pos, y_pos);
-			auto &unit = unit_pool[unit_number_ - 1];
+
+			unit_pool[selected_unit]->setPosition(x_pos, y_pos);
+			auto &unit = unit_pool[selected_unit];
 			project.spawnUnit(std::move(unit));
-			unit_pool.erase(unit_pool.begin() + unit_number_ - 1);
-			logger_->info("UNIT SUCCESFULLY PLACED!");
+			unit_pool.erase(unit_pool.begin() + selected_unit);
+
+			logger_->info("UNIT SUCCESSFULLY PLACED AT X:" + std::to_string(x_pos) + " Y:" + std::to_string(y_pos) + "!");
 		}
 		std::string getName() const override { return "Place Unit"; }
 	};
