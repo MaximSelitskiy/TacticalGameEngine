@@ -19,6 +19,14 @@ namespace Engine::Adapters::RuntimeUI
 
         ~GameTerminalPresenter() override = default;
 
+        GameTerminalPresenter(const GameTerminalPresenter &) = delete;
+
+        GameTerminalPresenter &operator=(const GameTerminalPresenter &) = delete;
+
+        GameTerminalPresenter(GameTerminalPresenter &&other) noexcept = default;
+
+        GameTerminalPresenter &operator=(GameTerminalPresenter &&other) noexcept = default;
+
         void present(const Core::Models::Project &project) const override;
     };
 }

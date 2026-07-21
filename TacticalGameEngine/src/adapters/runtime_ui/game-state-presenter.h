@@ -21,6 +21,14 @@ namespace Engine::Adapters::RuntimeUI
 
         ~GameStatePresenter() override = default;
 
+        GameStatePresenter(const GameStatePresenter &) = delete;
+
+        GameStatePresenter &operator=(const GameStatePresenter &) = delete;
+
+        GameStatePresenter(GameStatePresenter &&other) noexcept = default;
+
+        GameStatePresenter &operator=(GameStatePresenter &&other) noexcept = default;
+
         void present(const Core::Models::Project &project) const override;
     };
 

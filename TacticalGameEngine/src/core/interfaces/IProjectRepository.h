@@ -6,18 +6,19 @@ namespace Engine::Core::Interfaces
 {
 	class IProjectRepository
 	{
+	protected:
+		IProjectRepository(const IProjectRepository &) = default;
+
+		IProjectRepository &operator=(const IProjectRepository &) = default;
+
+		IProjectRepository(IProjectRepository &&) = default;
+
+		IProjectRepository &operator=(IProjectRepository &&) = default;
+
 	public:
 		IProjectRepository() = default;
 
 		virtual ~IProjectRepository() = default;
-
-		IProjectRepository(const IProjectRepository &) = delete;
-
-		IProjectRepository &operator=(const IProjectRepository &) = delete;
-
-		IProjectRepository(IProjectRepository &&) = delete;
-
-		IProjectRepository &operator=(IProjectRepository &&) = delete;
 
 		virtual void save(const Models::Project &project, const std::string &filepath) = 0;
 		// можно и unique использовать, но тогда у сохранения будет возможность изменять данные

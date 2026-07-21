@@ -14,6 +14,14 @@ namespace Engine::Infrastructure::Logging
 
 		~LoggerConsole() override = default;
 
+		LoggerConsole(const LoggerConsole &) = delete;
+
+		LoggerConsole &operator=(const LoggerConsole &) = delete;
+
+		LoggerConsole(LoggerConsole &&other) noexcept = default;
+
+		LoggerConsole &operator=(LoggerConsole &&other) noexcept = default;
+
 		void info(const std::string &message) override
 		{
 			std::cout << "[INFO] " << message << std::endl;
