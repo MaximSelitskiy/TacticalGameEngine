@@ -1,6 +1,11 @@
 #pragma once
+
 #include "../IEditorAction.h"
 #include "../../../core/interfaces/IProjectRepository.h"
+
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/component/component.hpp>
+#include <ftxui/dom/elements.hpp>
 #include <filesystem>
 #include <iostream>
 #include <vector>
@@ -17,7 +22,6 @@ namespace Engine::Adapters::Editor::Actions
         std::shared_ptr<Core::Interfaces::IProjectRepository> repo_;
         std::function<void(std::unique_ptr<Core::Models::Project>)> on_project_loaded_;
         const std::string save_folder_ = "saves";
-
     public:
         LoadProjectAction(std::shared_ptr<Core::Interfaces::ILogger> logger,
                           std::shared_ptr<Core::Interfaces::IProjectRepository> repo,
@@ -50,42 +54,56 @@ namespace Engine::Adapters::Editor::Actions
 
         void execute(EditorState &editor_state) override
         {
-            logger_->info("------ PROJECT LOADING PROCESS -----");
-            std::vector<fs::path> save_files;
+            using namespace ftxui;
+            std::vector<std::string> save_files;
             if (fs::exists(save_folder_) && fs::is_directory(save_folder_))
             {
                 for (const auto &entry : fs::directory_iterator(save_folder_))
                 {
                     if (entry.is_regular_file() && entry.path().extension() == ".json")
                     {
-                        save_files.push_back(entry.path());
+                        save_files.push_back(entry.path().filename().string());
                     }
                 }
             }
 
-            if (save_files.empty())
-            {
-                logger_->warn("NO SAVE FILES FOUND IN '" + save_folder_ + "' FOLDER.");
-                return;
-            }
+            int selected = 0;
+            ftxui::MenuOption option;
+            option.on_enter = [&]() {};
 
-            logger_->info("0. CANCEL LOADING");
-            for (size_t i = 0; i < save_files.size(); ++i)
-            {
-                logger_->info(std::to_string(i + 1) + ". LOAD: " + save_files[i].filename().string());
-            }
+            auto menu_component = Menu(&save_files, &selected, option);
 
-            logger_->info("CHOOSE FILE TO LOAD: ");
-            size_t choice;
-            if (!(std::cin >> choice) || choice > save_files.size() || choice == 0)
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                logger_->info("LOADING CANCELLED.");
-                return;
-            }
+            auto renderer = Renderer(menu_component, [&]() -> Element
+                                     { return window(
+                                                  text(" LOADING PROJECT ") | bold | color(Color::Blue) | hcenter,
+                                                  vbox({text("Use Up/Down arrows to navigate, Enter to select.") | dim | hcenter,
+                                                        separator(),
+                                                        menu_component->Render(),
+                                                        separator(),
+                                                        text("Status: Ready") | color(Color::GrayDark)})) |
+                                              center; });
 
-            std::string filepath_to_load = save_files[choice - 1].string();
+            auto screen = ScreenInteractive::TerminalOutput();
+
+            auto event_handler = CatchEvent(renderer, [&](Event event)
+                                            {
+        if (event == Event::Return) {
+            screen.ExitLoopClosure()(); 
+            return true;
+        }
+        if (event == Event::Escape) {
+            screen.ExitLoopClosure()();
+            return true;
+        }
+        return false; });
+
+            screen.Loop(event_handler);
+
+            size_t choice = static_cast<size_t>(selected);
+
+            std::string filename = save_files[choice];
+
+            std::string filepath_to_load = (fs::path(save_folder_) / filename).string();
             try
             {
                 auto loaded_project = repo_->load(filepath_to_load);

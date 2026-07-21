@@ -34,7 +34,7 @@ namespace Engine::Adapters::Editor::Actions
             return *this;
         }
 
-        std::string getName() const override { return "Run Simulation"; }
+        std::string getName() const override { return "Exit App"; }
 
         void execute(EditorState &editor_state) override
         {
