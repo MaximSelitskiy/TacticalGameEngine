@@ -53,7 +53,7 @@ namespace Engine::Adapters::Editor::Actions
 			auto container = Container::Vertical({menu_component,
 												  input_component});
 
-			auto screen = ScreenInteractive::TerminalOutput();
+			auto screen = ScreenInteractive::Fullscreen();
 			bool is_confirmed = false;
 
 			auto ui_renderer = Renderer(container, [&]() -> Element

@@ -52,7 +52,7 @@ namespace Engine::Adapters::Editor::Actions
 			auto container = Container::Vertical({menu_component,
 												  input_component});
 
-			auto screen = ScreenInteractive::TerminalOutput();
+			auto screen = ScreenInteractive::Fullscreen();
 			bool is_confirmed = false;
 
 			auto ui_renderer = Renderer(container, [&]() -> Element
@@ -79,7 +79,7 @@ namespace Engine::Adapters::Editor::Actions
             return true;
         }
 
-        if (event == Event::Escape || event == Event::Character("0")) {
+        if (event == Event::Character("Q") || event == Event::Character("q")) {
             is_confirmed = false;
             screen.Exit();
             return true;
