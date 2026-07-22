@@ -266,4 +266,41 @@ CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presente
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/stl_queue.h \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/stack \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/stl_stack.h \
-  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/dom/deprecated.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/screen_interactive.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/app.hpp \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/atomic \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/chrono \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/chrono.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/ratio \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/ctime \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/stl_algo.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/algorithmfwd.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/uniform_int_dist.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/chrono_io.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/format \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/charconv \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/locale \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/locale_facets_nonio.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/x86_64-pc-linux-gnu/bits/time_members.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/x86_64-pc-linux-gnu/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/codecvt.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/locale_facets_nonio.tcc \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/locale_conv.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/span \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/formatfwd.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/unicode.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/unicode-data.h \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/animation.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/captured_mouse.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/task.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/event.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/mouse.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/component.hpp \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/utility \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/stl_relops.h \
+  /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/16/../../../../include/c++/16/bits/intcmp.h \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/util/warn_windows_macro.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/component_base.hpp \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include/ftxui/component/component_options.hpp

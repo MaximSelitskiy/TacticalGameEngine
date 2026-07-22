@@ -443,8 +443,7 @@ CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o: \
   /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../../core/runtime/../models/project.h \
   /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../../core/runtime/../interfaces/IGamePresenter.h \
   /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../../core/runtime/../interfaces/../models/project.h \
-  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/game-state-presenter.h \
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/game-terminal-presenter.h \
   /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/../../core/models/map.h \
   /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/../../core/models/project.h \
-  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/../../core/interfaces/IGamePresenter.h \
-  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/game-terminal-presenter.h
+  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/shared/../runtime_ui/../../core/interfaces/IGamePresenter.h

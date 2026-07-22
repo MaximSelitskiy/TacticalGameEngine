@@ -42,8 +42,6 @@ add_executable(TacticalGameEngine
     "src/adapters/shared/state-manager.h"
     "src/adapters/shared/state-manager.cpp"
     "src/adapters/editor/menu-components.cpp"
-    "src/adapters/runtime_ui/game-state-presenter.h"
-    "src/adapters/runtime_ui/game-state-presenter.cpp"
     "src/adapters/runtime_ui/game-terminal-presenter.h"
     "src/adapters/runtime_ui/game-terminal-presenter.cpp"
     "src/adapters/editor/actions/place-unit-action.h"

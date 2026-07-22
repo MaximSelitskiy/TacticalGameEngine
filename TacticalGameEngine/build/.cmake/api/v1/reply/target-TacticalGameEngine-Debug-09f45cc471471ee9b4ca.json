@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 57,
+				"line" : 55,
 				"parent" : 0
 			},
 			{
@@ -127,8 +127,7 @@
 				9,
 				10,
 				12,
-				14,
-				17
+				15
 			]
 		}
 	],
@@ -215,8 +214,7 @@
 				9,
 				10,
 				12,
-				14,
-				17
+				15
 			]
 		},
 		{
@@ -233,11 +231,10 @@
 				8,
 				11,
 				13,
-				15,
+				14,
 				16,
-				18,
-				19,
-				20
+				17,
+				18
 			]
 		}
 	],
@@ -343,25 +340,6 @@
 			],
 			"compileGroupIndex" : 0,
 			"path" : "src/adapters/editor/menu-components.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"backtraces" : 
-			[
-				1
-			],
-			"path" : "src/adapters/runtime_ui/game-state-presenter.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"backtraces" : 
-			[
-				1
-			],
-			"compileGroupIndex" : 0,
-			"path" : "src/adapters/runtime_ui/game-state-presenter.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

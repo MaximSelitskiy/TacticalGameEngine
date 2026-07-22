@@ -27,6 +27,6 @@ namespace Engine::Adapters::RuntimeUI
 
         GameTerminalPresenter &operator=(GameTerminalPresenter &&other) noexcept = default;
 
-        void present(const Core::Models::Project &project) const override;
+        bool present(const Core::Models::Project &project) const override;
     };
 }

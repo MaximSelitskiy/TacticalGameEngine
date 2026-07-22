@@ -19,7 +19,7 @@ namespace Engine::Infrastructure::Logging
         {
             using namespace ftxui;
 
-            auto screen = ScreenInteractive::Fullscreen;
+            auto screen = ScreenInteractive::Fullscreen();
             
             auto ok_button = Button(" OK ('q') ", [&]() { screen.Exit(); });
 

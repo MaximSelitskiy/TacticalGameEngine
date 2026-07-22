@@ -5,7 +5,6 @@ TacticalGameEngine: \
   CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o \
-  CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o \
   src/core/libengine_core.a \
@@ -50,8 +49,6 @@ CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o:
 CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o:
 
 CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o:
-
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o:
 
 CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o:
 

@@ -19,12 +19,6 @@
 },
 {
   "directory": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build",
-  "command": "/usr/bin/clang++  -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src/include -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/nlohmann_json-src/include -isystem /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include -g -std=gnu++20 -o CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-state-presenter.cpp",
-  "file": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-state-presenter.cpp",
-  "output": "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o"
-},
-{
-  "directory": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build",
   "command": "/usr/bin/clang++  -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src/include -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/nlohmann_json-src/include -isystem /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/ftxui-src/include -g -std=gnu++20 -o CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-terminal-presenter.cpp",
   "file": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-terminal-presenter.cpp",
   "output": "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o"

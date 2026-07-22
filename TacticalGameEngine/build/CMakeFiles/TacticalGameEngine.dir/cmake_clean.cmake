@@ -4,8 +4,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o.d"
   "CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o"
   "CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o.d"
-  "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o"
-  "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o.d"
   "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o"
   "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o.d"
   "CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o"

@@ -20,6 +20,6 @@ namespace Engine::Core::Interfaces
 
         virtual ~IGamePresenter() = default;
 
-        virtual void present(const Models::Project &project) const = 0;
+        virtual bool present(const Models::Project &project) const = 0;
     };
 }

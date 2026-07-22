@@ -294,30 +294,6 @@ src/adapters/editor/menu-components.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TacticalGameEngine.dir/build.make CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.s
 .PHONY : src/adapters/editor/menu-components.cpp.s
 
-src/adapters/runtime_ui/game-state-presenter.o: src/adapters/runtime_ui/game-state-presenter.cpp.o
-.PHONY : src/adapters/runtime_ui/game-state-presenter.o
-
-# target to build an object file
-src/adapters/runtime_ui/game-state-presenter.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TacticalGameEngine.dir/build.make CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o
-.PHONY : src/adapters/runtime_ui/game-state-presenter.cpp.o
-
-src/adapters/runtime_ui/game-state-presenter.i: src/adapters/runtime_ui/game-state-presenter.cpp.i
-.PHONY : src/adapters/runtime_ui/game-state-presenter.i
-
-# target to preprocess a source file
-src/adapters/runtime_ui/game-state-presenter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TacticalGameEngine.dir/build.make CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.i
-.PHONY : src/adapters/runtime_ui/game-state-presenter.cpp.i
-
-src/adapters/runtime_ui/game-state-presenter.s: src/adapters/runtime_ui/game-state-presenter.cpp.s
-.PHONY : src/adapters/runtime_ui/game-state-presenter.s
-
-# target to generate assembly for a file
-src/adapters/runtime_ui/game-state-presenter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TacticalGameEngine.dir/build.make CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.s
-.PHONY : src/adapters/runtime_ui/game-state-presenter.cpp.s
-
 src/adapters/runtime_ui/game-terminal-presenter.o: src/adapters/runtime_ui/game-terminal-presenter.cpp.o
 .PHONY : src/adapters/runtime_ui/game-terminal-presenter.o
 
@@ -415,9 +391,6 @@ help:
 	@echo "... src/adapters/editor/menu-components.o"
 	@echo "... src/adapters/editor/menu-components.i"
 	@echo "... src/adapters/editor/menu-components.s"
-	@echo "... src/adapters/runtime_ui/game-state-presenter.o"
-	@echo "... src/adapters/runtime_ui/game-state-presenter.i"
-	@echo "... src/adapters/runtime_ui/game-state-presenter.s"
 	@echo "... src/adapters/runtime_ui/game-terminal-presenter.o"
 	@echo "... src/adapters/runtime_ui/game-terminal-presenter.i"
 	@echo "... src/adapters/runtime_ui/game-terminal-presenter.s"

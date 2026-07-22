@@ -12,7 +12,6 @@
 #include "../editor/editor-state.h"
 #include "../editor/menu-components.h"
 #include "../../core/runtime/game-engine.h"
-#include "../runtime_ui/game-state-presenter.h"
 #include "../runtime_ui/game-terminal-presenter.h"
 
 #include <memory>

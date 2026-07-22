@@ -1,11 +1,15 @@
 #include "game-terminal-presenter.h"
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/component/component.hpp>
 
 namespace Engine::Adapters::RuntimeUI
 {
     using namespace ftxui;
 
-    void GameTerminalPresenter::present(const Core::Models::Project &project) const
+    bool GameTerminalPresenter::present(const Core::Models::Project &project) const
     {
+        bool should_continue = true;
+
         auto &map = project.getMap();
         Core::Models::Vec2 map_size = map.getSize();
         auto &units_in_world = project.getUnitsInWorld();
@@ -40,17 +44,11 @@ namespace Engine::Adapters::RuntimeUI
                 if (unit_found)
                 {
                     if (unit_type == "ENEMY")
-                    {
                         cell = cell | color(Color::Red) | bold;
-                    }
                     else if (unit_type == "FRIEND")
-                    {
                         cell = cell | color(Color::Green) | bold;
-                    }
                     else
-                    {
                         cell = cell | color(Color::Yellow);
-                    }
                 }
                 else
                 {
@@ -96,19 +94,40 @@ namespace Engine::Adapters::RuntimeUI
         }
 
         hud_elements.push_back(separator());
-        hud_elements.push_back(text("Press Enter to continue simulation (0 to exit to Editor)...") | italic);
+        hud_elements.push_back(text("Press Enter to continue simulation (q to exit to Editor)...") | italic);
 
         Element hud_content = vbox(std::move(hud_elements));
-        Element limited_hud = hud_content | size(HEIGHT, EQUAL, 5);
+        Element limited_hud = hud_content | size(HEIGHT, LESS_THAN, 8);
 
         Element hud_window = window(text(" HUD ") | bold | color(Color::Blue), limited_hud);
 
-        Element document = vbox({map_window,
-                                 vbox(),
-                                 hud_window});
+        auto screen = ScreenInteractive::Fullscreen();
 
-        auto screen = Screen::Create(Dimension::Full(), Dimension::Fit(document));
-        Render(screen, document);
-        screen.Print();
+        auto component = Renderer([&]() -> Element {
+            return vbox({
+                map_window,
+                hud_window
+            }) | center;
+        });
+
+        auto event_handler = CatchEvent(component, [&](Event event) {
+            if (event == Event::Return) {
+                should_continue = false;
+                screen.Exit();
+                return true;
+            }
+
+            if (event == Event::Character("q") || event == Event::Character("Q")) {
+                should_continue = false;
+                screen.Exit();
+                return true;
+            }
+
+            return false;
+        });
+
+        screen.Loop(event_handler);
+
+        return should_continue;
     }
 }

@@ -114,24 +114,10 @@ CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.s: cma
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/editor/menu-components.cpp -o CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.s
 
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o: CMakeFiles/TacticalGameEngine.dir/flags.make
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o: /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-state-presenter.cpp
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o: CMakeFiles/TacticalGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o -MF CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o.d -o CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-state-presenter.cpp
-
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-state-presenter.cpp > CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.i
-
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-state-presenter.cpp -o CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.s
-
 CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o: CMakeFiles/TacticalGameEngine.dir/flags.make
 CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o: /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-terminal-presenter.cpp
 CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o: CMakeFiles/TacticalGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o -MF CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o.d -o CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/adapters/runtime_ui/game-terminal-presenter.cpp
 
 CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.i: cmake_force
@@ -145,7 +131,7 @@ CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presente
 CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o: CMakeFiles/TacticalGameEngine.dir/flags.make
 CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o: /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/infrastcructure/persistance/json_project_repository.cpp
 CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o: CMakeFiles/TacticalGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o -MF CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o.d -o CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/infrastcructure/persistance/json_project_repository.cpp
 
 CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.i: cmake_force
@@ -161,7 +147,6 @@ TacticalGameEngine_OBJECTS = \
 "CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o" \
 "CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o" \
 "CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o" \
-"CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o" \
 "CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o" \
 "CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o"
 
@@ -171,7 +156,6 @@ TacticalGameEngine_EXTERNAL_OBJECTS =
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o
-TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/build.make
@@ -181,7 +165,7 @@ TacticalGameEngine: _deps/ftxui-build/libftxui-component.a
 TacticalGameEngine: _deps/ftxui-build/libftxui-dom.a
 TacticalGameEngine: _deps/ftxui-build/libftxui-screen.a
 TacticalGameEngine: CMakeFiles/TacticalGameEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable TacticalGameEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable TacticalGameEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TacticalGameEngine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
