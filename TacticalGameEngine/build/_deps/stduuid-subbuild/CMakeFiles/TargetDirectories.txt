@@ -1,0 +1,3 @@
+/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-subbuild/CMakeFiles/stduuid-populate.dir
+/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-subbuild/CMakeFiles/edit_cache.dir
+/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-subbuild/CMakeFiles/rebuild_cache.dir

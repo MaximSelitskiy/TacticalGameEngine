@@ -49,7 +49,7 @@ namespace Engine::Adapters::Editor
         ) | center; 
     });
 
-    auto screen = ScreenInteractive::TerminalOutput();
+    auto screen = ScreenInteractive::Fullscreen();
 
     auto event_handler = CatchEvent(renderer, [&](Event event) {
         if (event == Event::Return) {
