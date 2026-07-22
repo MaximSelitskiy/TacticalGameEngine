@@ -45,7 +45,7 @@ namespace Engine::Adapters::Editor::Actions
             auto container = Container::Vertical({width_slider,
                                                   height_slider});
 
-            auto screen = ScreenInteractive::TerminalOutput();
+            auto screen = ScreenInteractive::Fullscreen();
             bool is_confirmed = false;
 
             auto ui_renderer = Renderer(container, [&]() -> Element

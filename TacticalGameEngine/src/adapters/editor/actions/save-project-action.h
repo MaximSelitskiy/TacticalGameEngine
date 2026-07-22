@@ -88,7 +88,7 @@ namespace Engine::Adapters::Editor::Actions
                 }, &tab_selected)
             });
 
-            auto screen = ScreenInteractive::TerminalOutput();
+            auto screen = ScreenInteractive::Fullscreen();
             bool is_confirmed = false;
 
             auto ui_renderer = Renderer(container, [&]() -> Element {
@@ -139,7 +139,7 @@ namespace Engine::Adapters::Editor::Actions
                     return true;
                 }
 
-                if (event == Event::Escape || event == Event::Character("q")) {
+                if (event == Event::Character("Q") || event == Event::Character("q")) {
                     is_confirmed = false;
                     screen.Exit();
                     return true;

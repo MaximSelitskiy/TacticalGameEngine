@@ -79,7 +79,7 @@ namespace Engine::Adapters::Editor::Actions
 
             auto menu_component = Menu(&save_files, &selected, option);
 
-            auto screen = ScreenInteractive::TerminalOutput();
+            auto screen = ScreenInteractive::Fullscreen();
 
             bool is_confirmed = false;
 
@@ -91,7 +91,7 @@ namespace Engine::Adapters::Editor::Actions
             return true;
         }
 
-        if (event == Event::Character("q")) {
+        if (event == Event::Character("Q") || event == Event::Character("q")) {
             is_confirmed = false;   
             screen.ExitLoopClosure()();
             return true;
