@@ -1,2 +1,2 @@
-/usr/bin/llvm-ar qc libengine_core.a CMakeFiles/engine_core.dir/models/unit.cpp.o "CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o" "CMakeFiles/engine_core.dir/utils/id-generator.cpp.o"
+/usr/bin/llvm-ar qc libengine_core.a "CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o" "CMakeFiles/engine_core.dir/utils/id-generator.cpp.o"
 /usr/bin/llvm-ranlib libengine_core.a

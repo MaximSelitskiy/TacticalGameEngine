@@ -16,42 +16,41 @@ namespace Engine::Adapters::Editor
     }
 
     void MenuComponents::update(EditorState &editor_state)
-{
-    using namespace ftxui;
-
-    std::vector<std::string> menu_entries;
-    for (const auto &action : actions_)
     {
-        menu_entries.push_back(action->getName());
-    }
+        using namespace ftxui;
 
-    if (menu_entries.empty()) {
-        logger_->warn("NO ACTIONS REGISTERED IN MENU");
-        return;
-    }
+        std::vector<std::string> menu_entries;
+        for (const auto &action : actions_)
+        {
+            menu_entries.push_back(action->getName());
+        }
 
-    int selected = 0;
-    ftxui::MenuOption option;
-    option.on_enter = [&]() {};
+        if (menu_entries.empty())
+        {
+            logger_->warn("NO ACTIONS REGISTERED IN MENU");
+            return;
+        }
 
-    auto menu_component = Menu(&menu_entries, &selected, option);
+        int selected = 0;
+        ftxui::MenuOption option;
+        option.on_enter = [&]() {};
 
-    auto renderer = Renderer(menu_component, [&]() -> Element { 
-        return window(
-            text(" EDITOR MENU ") | bold | color(Color::Blue) | hcenter,
-            vbox({
-                text("Use Up/Down arrows to navigate, Enter to select.") | dim | hcenter,
-                separator(),
-                menu_component->Render(),
-                separator(),
-                text("Status: Ready") | color(Color::GrayDark)
-            })
-        ) | center; 
-    });
+        auto menu_component = Menu(&menu_entries, &selected, option);
 
-    auto screen = ScreenInteractive::Fullscreen();
+        auto renderer = Renderer(menu_component, [&]() -> Element
+                                 { return window(
+                                              text(" EDITOR MENU ") | bold | color(Color::Blue) | hcenter,
+                                              vbox({text("Use Up/Down arrows to navigate, Enter to select.") | dim | hcenter,
+                                                    separator(),
+                                                    menu_component->Render(),
+                                                    separator(),
+                                                    text("Status: Ready") | color(Color::GrayDark)})) |
+                                          center; });
 
-    auto event_handler = CatchEvent(renderer, [&](Event event) {
+        auto screen = ScreenInteractive::Fullscreen();
+
+        auto event_handler = CatchEvent(renderer, [&](Event event)
+                                        {
         if (event == Event::Return) {
             screen.ExitLoopClosure()(); 
             return true;
@@ -61,19 +60,18 @@ namespace Engine::Adapters::Editor
             screen.ExitLoopClosure()();
             return true;
         }
-        return false; 
-    });
+        return false; });
 
-    screen.Loop(event_handler);
+        screen.Loop(event_handler);
 
-    size_t choice = static_cast<size_t>(selected);
-    if (choice < actions_.size())
-    {
-        actions_[choice]->execute(editor_state);
+        size_t choice = static_cast<size_t>(selected);
+        if (choice < actions_.size())
+        {
+            actions_[choice]->execute(editor_state);
+        }
+        else
+        {
+            logger_->warn("INVALID INDEX SELECTION");
+        }
     }
-    else
-    {
-        logger_->warn("INVALID INDEX SELECTION");
-    }
-}
 }

@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/engine_core.dir/models/unit.cpp.o"
-  "CMakeFiles/engine_core.dir/models/unit.cpp.o.d"
   "CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o"
   "CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o.d"
   "CMakeFiles/engine_core.dir/utils/id-generator.cpp.o"

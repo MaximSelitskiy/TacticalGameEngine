@@ -80,18 +80,18 @@ namespace Engine::Adapters::Editor::Actions
             std::vector<std::string> tab_entries = {"Overwrite Existing File", "Create New File"};
             auto tab_toggle = Toggle(&tab_entries, &tab_selected);
 
-            auto container = Container::Vertical({
-                tab_toggle,
-                Container::Tab({
-                    menu_component,
-                    input_component,
-                }, &tab_selected)
-            });
+            auto container = Container::Vertical({tab_toggle,
+                                                  Container::Tab({
+                                                                     menu_component,
+                                                                     input_component,
+                                                                 },
+                                                                 &tab_selected)});
 
             auto screen = ScreenInteractive::Fullscreen();
             bool is_confirmed = false;
 
-            auto ui_renderer = Renderer(container, [&]() -> Element {
+            auto ui_renderer = Renderer(container, [&]() -> Element
+                                        {
                 Element content_view;
                 if (tab_selected == 0 && !save_files.empty())
                 {
@@ -123,10 +123,10 @@ namespace Engine::Adapters::Editor::Actions
                         separator(),
                         text("Tab: Switch mode | Enter: Save |'q': Cancel") | dim | hcenter
                     })
-                ) | center;
-            });
+                ) | center; });
 
-            auto event_handler = CatchEvent(ui_renderer, [&](Event event) {
+            auto event_handler = CatchEvent(ui_renderer, [&](Event event)
+                                            {
                 if (event == Event::Return) {
                     if (tab_selected == 0 && save_files.empty()) {
                         return true;
@@ -145,8 +145,7 @@ namespace Engine::Adapters::Editor::Actions
                     return true;
                 }
 
-                return false;
-            });
+                return false; });
 
             screen.Loop(event_handler);
 

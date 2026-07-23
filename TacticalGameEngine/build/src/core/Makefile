@@ -195,30 +195,6 @@ engine_core/fast:
 	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/build
 .PHONY : engine_core/fast
 
-models/unit.o: models/unit.cpp.o
-.PHONY : models/unit.o
-
-# target to build an object file
-models/unit.cpp.o:
-	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o
-.PHONY : models/unit.cpp.o
-
-models/unit.i: models/unit.cpp.i
-.PHONY : models/unit.i
-
-# target to preprocess a source file
-models/unit.cpp.i:
-	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/models/unit.cpp.i
-.PHONY : models/unit.cpp.i
-
-models/unit.s: models/unit.cpp.s
-.PHONY : models/unit.s
-
-# target to generate assembly for a file
-models/unit.cpp.s:
-	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/models/unit.cpp.s
-.PHONY : models/unit.cpp.s
-
 runtime/game-engine.o: runtime/game-engine.cpp.o
 .PHONY : runtime/game-engine.o
 
@@ -282,9 +258,6 @@ help:
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... engine_core"
-	@echo "... models/unit.o"
-	@echo "... models/unit.i"
-	@echo "... models/unit.s"
 	@echo "... runtime/game-engine.o"
 	@echo "... runtime/game-engine.i"
 	@echo "... runtime/game-engine.s"

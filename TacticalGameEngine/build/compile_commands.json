@@ -481,12 +481,6 @@
 },
 {
   "directory": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core",
-  "command": "/usr/bin/clang++  -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src/include -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src -g -std=gnu++20 -o CMakeFiles/engine_core.dir/models/unit.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/models/unit.cpp",
-  "file": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/models/unit.cpp",
-  "output": "src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o"
-},
-{
-  "directory": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core",
   "command": "/usr/bin/clang++  -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src/include -I/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/_deps/stduuid-src -g -std=gnu++20 -o CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/runtime/game-engine.cpp",
   "file": "/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/runtime/game-engine.cpp",
   "output": "src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o"

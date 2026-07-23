@@ -72,24 +72,10 @@ include src/core/CMakeFiles/engine_core.dir/flags.make
 src/core/CMakeFiles/engine_core.dir/codegen:
 .PHONY : src/core/CMakeFiles/engine_core.dir/codegen
 
-src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o: src/core/CMakeFiles/engine_core.dir/flags.make
-src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o: /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/models/unit.cpp
-src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o: src/core/CMakeFiles/engine_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o"
-	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o -MF CMakeFiles/engine_core.dir/models/unit.cpp.o.d -o CMakeFiles/engine_core.dir/models/unit.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/models/unit.cpp
-
-src/core/CMakeFiles/engine_core.dir/models/unit.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine_core.dir/models/unit.cpp.i"
-	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/models/unit.cpp > CMakeFiles/engine_core.dir/models/unit.cpp.i
-
-src/core/CMakeFiles/engine_core.dir/models/unit.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine_core.dir/models/unit.cpp.s"
-	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/models/unit.cpp -o CMakeFiles/engine_core.dir/models/unit.cpp.s
-
 src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o: src/core/CMakeFiles/engine_core.dir/flags.make
 src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o: /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/runtime/game-engine.cpp
 src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o: src/core/CMakeFiles/engine_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o"
 	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o -MF CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o.d -o CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/runtime/game-engine.cpp
 
 src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.i: cmake_force
@@ -103,7 +89,7 @@ src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.s: cmake_force
 src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o: src/core/CMakeFiles/engine_core.dir/flags.make
 src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o: /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/utils/id-generator.cpp
 src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o: src/core/CMakeFiles/engine_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o"
 	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o -MF CMakeFiles/engine_core.dir/utils/id-generator.cpp.o.d -o CMakeFiles/engine_core.dir/utils/id-generator.cpp.o -c /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/src/core/utils/id-generator.cpp
 
 src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.i: cmake_force
@@ -116,19 +102,17 @@ src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.s: cmake_force
 
 # Object files for target engine_core
 engine_core_OBJECTS = \
-"CMakeFiles/engine_core.dir/models/unit.cpp.o" \
 "CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o" \
 "CMakeFiles/engine_core.dir/utils/id-generator.cpp.o"
 
 # External object files for target engine_core
 engine_core_EXTERNAL_OBJECTS =
 
-src/core/libengine_core.a: src/core/CMakeFiles/engine_core.dir/models/unit.cpp.o
 src/core/libengine_core.a: src/core/CMakeFiles/engine_core.dir/runtime/game-engine.cpp.o
 src/core/libengine_core.a: src/core/CMakeFiles/engine_core.dir/utils/id-generator.cpp.o
 src/core/libengine_core.a: src/core/CMakeFiles/engine_core.dir/build.make
 src/core/libengine_core.a: src/core/CMakeFiles/engine_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libengine_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libengine_core.a"
 	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && $(CMAKE_COMMAND) -P CMakeFiles/engine_core.dir/cmake_clean_target.cmake
 	cd /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/src/core && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine_core.dir/link.txt --verbose=$(VERBOSE)
 

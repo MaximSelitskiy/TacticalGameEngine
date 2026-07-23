@@ -1997,7 +1997,6 @@ TacticalGameEngine: /usr/lib64/Scrt1.o \
   /usr/lib/libmvec.so.1 \
   CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o \
-  CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o \
   CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o \
@@ -2188,8 +2187,6 @@ CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o:
 /usr/lib/libc.so.6:
 
 /usr/include/c++/16/tuple:
-
-CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o:
 
 /usr/include/bits/types/error_t.h:
 

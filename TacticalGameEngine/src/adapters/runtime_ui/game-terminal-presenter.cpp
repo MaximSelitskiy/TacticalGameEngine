@@ -1,4 +1,5 @@
 #include "game-terminal-presenter.h"
+
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component.hpp>
 
@@ -62,8 +63,9 @@ namespace Engine::Adapters::RuntimeUI
         std::string map_title = " MAP: " + map.getName() +
                                 " (" + std::to_string(map_size.x) + "x" + std::to_string(map_size.y) + ") ";
 
-        Element map_window = window(text(map_title) | bold | color(Color::Blue), 
-                                    gridbox(grid_rows) | center) | center;
+        Element map_window = window(text(map_title) | bold | color(Color::Blue),
+                                    gridbox(grid_rows) | center) |
+                             center;
 
         std::vector<Element> hud_elements;
         hud_elements.push_back(text("UNITS IN WORLD:") | bold | color(Color::BlueLight));
@@ -103,16 +105,15 @@ namespace Engine::Adapters::RuntimeUI
 
         auto screen = ScreenInteractive::Fullscreen();
 
-        auto component = Renderer([&]() -> Element {
-            return vbox({
-                map_window,
-                hud_window
-            }) | center;
-        });
+        auto component = Renderer([&]() -> Element
+                                  { return vbox({map_window,
+                                                 hud_window}) |
+                                           center; });
 
-        auto event_handler = CatchEvent(component, [&](Event event) {
+        auto event_handler = CatchEvent(component, [&](Event event)
+                                        {
             if (event == Event::Return) {
-                should_continue = false;
+                should_continue = true;
                 screen.Exit();
                 return true;
             }
@@ -123,8 +124,7 @@ namespace Engine::Adapters::RuntimeUI
                 return true;
             }
 
-            return false;
-        });
+            return false; });
 
         screen.Loop(event_handler);
 

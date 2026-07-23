@@ -43,7 +43,7 @@ namespace Engine::Adapters::Shared
 		~StateManager() = default;
 
 		StateManager(const StateManager &) = delete;
-		
+
 		StateManager &operator=(const StateManager &) = delete;
 
 		StateManager(StateManager &&other) noexcept

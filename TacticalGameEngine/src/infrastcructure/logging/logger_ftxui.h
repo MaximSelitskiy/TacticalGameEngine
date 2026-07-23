@@ -20,21 +20,20 @@ namespace Engine::Infrastructure::Logging
             using namespace ftxui;
 
             auto screen = ScreenInteractive::Fullscreen();
-            
-            auto ok_button = Button(" OK ('q') ", [&]() { screen.Exit(); });
 
-            auto alert_renderer = Renderer(ok_button, [&]() -> Element {
-                return window(
-                    text(" " + title + " ") | bold | color(title_color) | hcenter,
-                    vbox({
-                        text(message) | hcenter,
-                        separator(),
-                        ok_button->Render() | hcenter
-                    })
-                ) | center;
-            });
+            auto ok_button = Button(" OK ('q') ", [&]()
+                                    { screen.Exit(); });
 
-            auto event_handler = CatchEvent(alert_renderer, [&](Event event) {
+            auto alert_renderer = Renderer(ok_button, [&]() -> Element
+                                           { return window(
+                                                        text(" " + title + " ") | bold | color(title_color) | hcenter,
+                                                        vbox({text(message) | hcenter,
+                                                              separator(),
+                                                              ok_button->Render() | hcenter})) |
+                                                    center; });
+
+            auto event_handler = CatchEvent(alert_renderer, [&](Event event)
+                                            {
                 if (event == Event::Return || 
                     event == Event::Character("q") || 
                     event == Event::Character("Q") || 
@@ -43,8 +42,7 @@ namespace Engine::Infrastructure::Logging
                     screen.Exit();
                     return true;
                 }
-                return false;
-            });
+                return false; });
 
             screen.Loop(event_handler);
         }

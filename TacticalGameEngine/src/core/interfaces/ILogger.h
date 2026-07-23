@@ -8,13 +8,14 @@ namespace Engine::Core::Interfaces
 	class ILogger
 	{
 	protected:
-	ILogger(const ILogger &) = default;
+		ILogger(const ILogger &) = default;
 
 		ILogger &operator=(const ILogger &) = default;
 
 		ILogger(ILogger &&) = default;
 
 		ILogger &operator=(ILogger &&) = default;
+
 	public:
 		ILogger() = default;
 

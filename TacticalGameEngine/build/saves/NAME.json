@@ -1,0 +1,32 @@
+{
+   "available_item_types": [
+      "WEAPON",
+      "POTION"
+   ],
+   "available_unit_types": [
+      "ENEMY",
+      "FRIEND"
+   ],
+   "item_pool": [
+      {
+         "id": "d4cc3a5d-e3f0-4ab6-a585-4fe4282457e8",
+         "name": "Sword",
+         "type": "WEAPON"
+      }
+   ],
+   "map": {
+      "height": 10,
+      "id": "b38c9041-32a3-43ba-bc7e-7267399854f3",
+      "name": "Deafult Map",
+      "width": 10
+   },
+   "project_name": "project_moon",
+   "unit_pool": [
+      {
+         "id": "62a6b1d2-1f36-4a50-ae73-e8fbc01a175a",
+         "inventory": [],
+         "name": "Viktor\\",
+         "type": "ENEMY"
+      }
+   ]
+}

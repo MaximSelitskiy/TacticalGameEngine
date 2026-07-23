@@ -2003,7 +2003,6 @@ TacticalGameEngine
  /usr/lib/libmvec.so.1
  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles/TacticalGameEngine.dir/TacticalGameEngine.cpp.o
  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles/TacticalGameEngine.dir/src/adapters/editor/menu-components.cpp.o
- /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-state-presenter.cpp.o
  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles/TacticalGameEngine.dir/src/adapters/runtime_ui/game-terminal-presenter.cpp.o
  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles/TacticalGameEngine.dir/src/adapters/shared/state-manager.cpp.o
  /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles/TacticalGameEngine.dir/src/infrastcructure/persistance/json_project_repository.cpp.o

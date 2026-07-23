@@ -1,6 +1,8 @@
 #pragma once
+
 #include "../IEditorAction.h"
 #include "../../../core/interfaces/IProjectRepository.h"
+
 #include <functional>
 
 namespace Engine::Adapters::Editor::Actions

@@ -235,7 +235,7 @@ CMakeFiles/TacticalGameEngine.dir/all: src/core/CMakeFiles/engine_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TacticalGameEngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles 88
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles 87
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/TacticalGameEngine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles 0
 .PHONY : CMakeFiles/TacticalGameEngine.dir/rule
@@ -262,7 +262,7 @@ CMakeFiles/TacticalGameEngine.dir/clean:
 _deps/ftxui-build/CMakeFiles/screen.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/screen.dir/build.make _deps/ftxui-build/CMakeFiles/screen.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/screen.dir/build.make _deps/ftxui-build/CMakeFiles/screen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=81,82,83,84,85,86,87,88 "Built target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=80,81,82,83,84,85,86,87 "Built target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/all
 
 # Build rule for subdir invocation for target.
@@ -279,7 +279,7 @@ screen: _deps/ftxui-build/CMakeFiles/screen.dir/rule
 # codegen rule for target.
 _deps/ftxui-build/CMakeFiles/screen.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/ftxui-build/CMakeFiles/screen.dir/build.make _deps/ftxui-build/CMakeFiles/screen.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=81,82,83,84,85,86,87,88 "Finished codegen for target screen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=80,81,82,83,84,85,86,87 "Finished codegen for target screen"
 .PHONY : _deps/ftxui-build/CMakeFiles/screen.dir/codegen
 
 # clean rule for target.
@@ -359,12 +359,12 @@ _deps/ftxui-build/CMakeFiles/component.dir/clean:
 src/core/CMakeFiles/engine_core.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=77,78,79,80 "Built target engine_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=77,78,79 "Built target engine_core"
 .PHONY : src/core/CMakeFiles/engine_core.dir/all
 
 # Build rule for subdir invocation for target.
 src/core/CMakeFiles/engine_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/core/CMakeFiles/engine_core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles 0
 .PHONY : src/core/CMakeFiles/engine_core.dir/rule
@@ -376,7 +376,7 @@ engine_core: src/core/CMakeFiles/engine_core.dir/rule
 # codegen rule for target.
 src/core/CMakeFiles/engine_core.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/engine_core.dir/build.make src/core/CMakeFiles/engine_core.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=77,78,79,80 "Finished codegen for target engine_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/maxich-prime/Programming/Pet-Projects/TacticalGameEngine/TacticalGameEngine/build/CMakeFiles --progress-num=77,78,79 "Finished codegen for target engine_core"
 .PHONY : src/core/CMakeFiles/engine_core.dir/codegen
 
 # clean rule for target.

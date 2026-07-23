@@ -1,5 +1,4 @@
 add_library(engine_core STATIC
-    models/unit.cpp
     models/unit.h
     models/item.h
     models/map.h

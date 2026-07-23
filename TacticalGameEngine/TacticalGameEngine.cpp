@@ -10,12 +10,13 @@ int main()
 {
 	std::filesystem::create_directory("saves");
 	auto logger = std::make_shared<Engine::Infrastructure::Logging::LoggerFTXUI>();
-	auto project = std::make_unique<Engine::Core::Models::Project>("project_moon",logger);
+	auto project = std::make_unique<Engine::Core::Models::Project>("project_moon", logger);
 	auto repository = std::make_shared<Engine::Infrastructure::Persistence::JsonProjectRepository>(logger);
-	Engine::Adapters::Shared::StateManager state_manager(logger, std::move(project),repository);
-	while (!state_manager.isExiting()) {
+	Engine::Adapters::Shared::StateManager state_manager(logger, std::move(project), repository);
+	while (!state_manager.isExiting())
+	{
 		state_manager.update();
-		//system("cls");
+		// system("cls");
 	}
 	return 0;
 }
